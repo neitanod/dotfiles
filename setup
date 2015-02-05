@@ -20,5 +20,7 @@ ln -s ~/dotfiles/gitconfig   ~/.gitconfig
 ln -s ~/dotfiles/githelpers  ~/.githelpers
 ln -s ~/dotfiles/mailcap     ~/.mailcap
 
+mv ~/dotfiles/oh-my-zsh ~/dotfiles/oh-my-zsh_backup
 git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh
-
+cp ~/dotfiles/oh-my-zsh_backup/* ~/dotfiles/oh-my-zsh/ -R
+rm -rf ~/dotfiles/oh-my-zsh_backup
