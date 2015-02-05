@@ -19,3 +19,6 @@ ln -s ~/dotfiles/tmux.conf   ~/.tmux.conf
 ln -s ~/dotfiles/gitconfig   ~/.gitconfig
 ln -s ~/dotfiles/githelpers  ~/.githelpers
 ln -s ~/dotfiles/mailcap     ~/.mailcap
+
+git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh
+
