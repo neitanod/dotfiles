@@ -1,0 +1,14 @@
+call clearmatches()
+highlight highlight_8eb5ada3 ctermbg=224 ctermfg=0
+call matchadd('highlight_8eb5ada3', '\<tbone\>')
+highlight highlight_e3e2aa30 ctermbg=166 ctermfg=0
+call matchadd('highlight_e3e2aa30', '\<a href="ugroup\>')"></a>
+highlight highlight_097a38d9 ctermbg=127 ctermfg=0
+call matchadd('highlight_097a38d9', '\<myvimrc\>')
+highlight highlight_45538585 ctermbg=76 ctermfg=0
+call matchadd('highlight_45538585', '\<nestable\>')
+highlight highlight_56295bf0 ctermbg=157 ctermfg=0
+call matchadd('highlight_56295bf0', '\<bind\>')
+highlight highlight_f980791b ctermbg=227 ctermfg=0
+call matchadd('highlight_f980791b', '\<Plug\>')
+highlight highlight_8cf8463b ctermfg=218

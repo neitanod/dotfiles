@@ -1,0 +1,9 @@
+###############################################################################
+#
+# MIME types and programs that process those types
+#
+###############################################################################
+#image/*; /usr/bin/gthumb '%s'; test=test -n "$DISPLAY"
+#text/html; google-chrome %s; test=test -n "$DISPLAY"; needsterminal
+text/html; google-chrome %s | sleep 3; test=test -n "$DISPLAY" 
+image/*; /usr/bin/gwenview '%s'; test=test -n "$DISPLAY"

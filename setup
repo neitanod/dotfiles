@@ -1,0 +1,21 @@
+mkdir ~/olddotfiles > /dev/null 2>&1
+
+mv ~/.vim        ~/olddotfiles/.vim
+mv ~/.vimrc      ~/olddotfiles/.vimrc
+mv ~/.vimundo    ~/olddotfiles/.vimundo
+mv ~/.bashrc     ~/olddotfiles/.bashrc
+mv ~/.zshrc      ~/olddotfiles/.zshrc
+mv ~/.tmux.conf  ~/olddotfiles/.tmux.conf
+mv ~/.gitconfig  ~/olddotfiles/.gitconfig
+mv ~/.githelpers ~/olddotfiles/.githelpers
+mv ~/.mailcap    ~/olddotfiles/.mailcap
+
+ln -s ~/dotfiles/vim         ~/.vim
+ln -s ~/dotfiles/vimrc       ~/.vimrc
+ln -s ~/dotfiles/vim/vimundo ~/.vimundo
+ln -s ~/dotfiles/bashrc      ~/.bashrc
+ln -s ~/dotfiles/zshrc       ~/.zshrc
+ln -s ~/dotfiles/tmux.conf   ~/.tmux.conf
+ln -s ~/dotfiles/gitconfig   ~/.gitconfig
+ln -s ~/dotfiles/githelpers  ~/.githelpers
+ln -s ~/dotfiles/mailcap     ~/.mailcap
