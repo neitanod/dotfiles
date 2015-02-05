@@ -1,1 +1,3 @@
 .vim_auto_sess
+oh-my-zsh/*
+!oh-my-zsh/custom
