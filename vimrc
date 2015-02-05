@@ -789,6 +789,8 @@ Plug 'https://github.com/vim-scripts/Conque-Shell'
 Plug 'https://github.com/neitanod/vim-ondemandhighlight'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/spf13/PIV'
+Plug 'https://github.com/jceb/vim-editqf'
+Plug 'https://github.com/vim-scripts/diffchar.vim'
 
 
 "browser
