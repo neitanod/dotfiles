@@ -1,14 +1,24 @@
+let g:ondemand_highlight_enabled = 1
 call clearmatches()
-highlight highlight_8eb5ada3 ctermbg=224 ctermfg=0
-call matchadd('highlight_8eb5ada3', '\<tbone\>')
-highlight highlight_e3e2aa30 ctermbg=166 ctermfg=0
-call matchadd('highlight_e3e2aa30', '\<a href="ugroup\>')"></a>
-highlight highlight_097a38d9 ctermbg=127 ctermfg=0
-call matchadd('highlight_097a38d9', '\<myvimrc\>')
-highlight highlight_45538585 ctermbg=76 ctermfg=0
-call matchadd('highlight_45538585', '\<nestable\>')
-highlight highlight_56295bf0 ctermbg=157 ctermfg=0
-call matchadd('highlight_56295bf0', '\<bind\>')
-highlight highlight_f980791b ctermbg=227 ctermfg=0
-call matchadd('highlight_f980791b', '\<Plug\>')
-highlight highlight_8cf8463b ctermfg=218
+highlight highlight_ec6059eb ctermbg=119 ctermfg=0
+call matchadd('highlight_ec6059eb', '\<OnDemandHighlightShow\>')
+highlight highlight_8eb174f5 ctermbg=77 ctermfg=0
+call matchadd('highlight_8eb174f5', '\<persisted\>')
+highlight highlight_17c537fb ctermbg=155 ctermfg=0
+call matchadd('highlight_17c537fb', '\<let\>')
+highlight highlight_05adc861 ctermfg=77
+call matchadd('highlight_05adc861', '$o ')
+highlight highlight_a5b95921 ctermbg=34 ctermfg=0
+call matchadd('highlight_a5b95921', '\<bloque\>')
+highlight highlight_88fa9f69 ctermbg=181 ctermfg=0
+call matchadd('highlight_88fa9f69', '\<original\>')
+highlight highlight_c8751d37 ctermbg=129 ctermfg=0
+call matchadd('highlight_c8751d37', '\<filtered\>')
+highlight highlight_9e7b9647 ctermbg=42 ctermfg=0
+call matchadd('highlight_9e7b9647', '\<this\>')
+highlight highlight_e73af363 ctermbg=69 ctermfg=0
+call matchadd('highlight_e73af363', '\<o\>')
+highlight highlight_ae6ba5b4 ctermfg=150
+call matchadd('highlight_ae6ba5b4', '\<body\>')
+highlight highlight_4078ebb5 ctermbg=220 ctermfg=0
+call matchadd('highlight_4078ebb5', '\<breadcrum\>')
