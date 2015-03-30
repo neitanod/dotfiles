@@ -561,7 +561,7 @@ vnoremap Z0 :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:nohlsearch<CR
 """"""""""""""""""""""""""""""
 fun! s:ToggleMouse()
   if !exists("s:old_mouse")
-    let s:old_mouse = "a":Q
+    let s:old_mouse = "a"
 
   endif
 
@@ -726,7 +726,6 @@ map <F2> :so .vim_auto_sess<CR>
 command! -bar -nargs=0 Mutt   :silent exe "! mutt" |redraw!
 command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 
-
 " }}}
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
@@ -789,7 +788,8 @@ Plug 'https://github.com/vim-scripts/Conque-Shell'
 Plug 'https://github.com/neitanod/vim-ondemandhighlight'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/spf13/PIV'
-Plug 'https://github.com/jceb/vim-editqf'
+Plug 'https://github.com/itchyny/vim-qfedit'
+"Plug 'https://github.com/jceb/vim-editqf'
 Plug 'https://github.com/vim-scripts/diffchar.vim'
 
 
@@ -894,7 +894,7 @@ cnoremap <c-e> <end>
 " Quickly edit the vimrc and TIL files
 nnoremap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <silent> <leader>T :tabedit ~/TIL.txt<CR>
-nnoremap <silent> <leader>s :tabedit ~/dotfiles/vim/bundle/vim-snippets/UltiSnips/php.snippets<CR>
+nnoremap <silent> <leader>s :tabedit ~/dotfiles/vim/UltiSnips/php.snippets<CR>
 nnoremap <silent> <leader>n :tabedit ~/Dropbox/Public/notas/notas.md<CR>
 nnoremap <silent> <leader>p :tabedit ~/.pentadactylrc<CR>
 
@@ -1159,6 +1159,12 @@ endfunction
 nnoremap <silent> n  n:call HLNext(0.05)<cr>
 nnoremap <silent> N  N:call HLNext(0.05)<cr>
 
+
+"Will open files in current directory, allows you to leave the working cd in
+"the project root. You can also use %% anywhere in the command line to expand.
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+
 " }}}
 " --- Vim sade ------------------------------------------------------------- {{{
 try
@@ -1326,3 +1332,16 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 " --- Continue with the commands of this file, but after loading plugins --- {{{
 autocmd VimEnter * source ~/dotfiles/vimloadedrc 
 " }}}
+"
+"
+"
+function! Cat_loc()
+  %s/Category/Location/g
+  %s/category/location/g
+  %s/Categoria/Localidad/g
+  %s/Categoría/Localidad/g
+  %s/categoria/localidad/g
+  %s/categoría/localidad/g
+endfunction
+nnoremap <leader>e :call Cat_loc()<enter><esc>
+
