@@ -1245,7 +1245,8 @@ let g:DVB_TrimWS = 1
 "let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_detect_whitespace = 0
+"let g:airline_detect_whitespace = 0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_exclude_preview = 1 "needed by CtrlSpace plugin
 " }}}
 " -------- Syntastic   {{{
