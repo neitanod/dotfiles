@@ -34,6 +34,11 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
 
+set complete+=k
+set dictionary-=~/.vim/dictionaries/user.txt
+set dictionary+=~/.vim/dictionaries/user.txt
+au FileType * execute 'setlocal dict+=~/.vim/dictionaries/'.&filetype.'.txt'
+
 "silent! colorscheme desert
 "silent! colorscheme vividchalk
 silent! colorscheme molokai
@@ -168,6 +173,9 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ 
 """"""""""""""""""""""""""""""
 " Hide the Tabline, since it will be controlled with CtrlSpace plugin (<C-Space>l)
 "set showtabline=0
+"nnoremap <C-Space> :CtrlSpace<CR>
+let g:ctrlspace_default_mapping_key = "<C-A>"
+
 
 """"""""""""""""""""""""""""""
 " => CtrlSpace Colors
@@ -267,8 +275,7 @@ nnoremap zl :let @z=@"<cr>x$p:let @"=@z<cr>
 nnoremap <Space> <Nop>
 let mapleader = "\<Space>"
 
-iabbrev slg Sebastián Grignoli
-iabbrev slg@ "Sebastián Grignoli" <grignoli@gmail.com>
+iabbrev slg "Sebastián Grignoli" <grignoli@gmail.com>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ,p Prepara y ,a Aplica un patron
@@ -385,7 +392,15 @@ nnoremap <leader>C #``cgN
 
 inoremap <? <?php<Space><Space>?><Left><Left><Left>
 inoremap <a <a<Space>href=""></a><Left><Left><Left><Left><Left><Left>
-
+inoremap <d <div></div><Left><Left><Left><Left><Left><Left>
+inoremap <b <body></body><Left><Left><Left><Left><Left><Left><Left>
+inoremap <ht <html></html><Left><Left><Left><Left><Left><Left><Left>
+inoremap <h1 <h1></h1><Left><Left><Left><Left><Left>
+inoremap <h2 <h2></h2><Left><Left><Left><Left><Left>
+inoremap <h3 <h3></h3><Left><Left><Left><Left><Left>
+inoremap <h4 <h4></h4><Left><Left><Left><Left><Left>
+inoremap <u <ul></ul><Left><Left><Left><Left><Left>
+inoremap <l <li></li><Left><Left><Left><Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -396,7 +411,6 @@ inoremap <a <a<Space>href=""></a><Left><Left><Left><Left><Left><Left>
 "map <C-k> <C-W>k
 "map <C-l> <C-W>l
 " and Tabs!
-map <C-w>t <Esc>:tabnew<enter>
 map <C-w><C-t> <Esc>:tabnew<enter>
 
 " Split vertically and explore
@@ -629,13 +643,13 @@ endif
 if !exists("vimrc_autocommands_completion_loaded")
   let vimrc_autocommands_completion_loaded = 1
   if has("autocmd")
-    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType c set omnifunc=ccomplete#Complete
+    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
     "let g:SuperTabClosePreviewOnPopupClose = 1
     " Estas lineas hacen lo mismo que la anterior cuando no esta instalado SuperTab:
@@ -739,6 +753,7 @@ Plug 'https://github.com/bling/vim-airline'
 "Plug 'https://github.com/gorodinskiy/vim-coloresque' " conflict with vim-ondemandhighlight
 "Plug 'https://github.com/skammer/vim-css-color' " slow loading files
 "Plug 'https://github.com/lilydjwg/colorizer' " slow switching tabs
+
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll'
 Plug 'https://github.com/rking/ag.vim'
 Plug 'https://github.com/jiangmiao/auto-pairs'
@@ -749,6 +764,7 @@ Plug 'https://github.com/duff/vim-bufonly'
 Plug 'https://github.com/rhysd/clever-f.vim'
 Plug 'https://github.com/sgur/ctrlp-extensions.vim'
 Plug 'https://github.com/neitanod/vim-sade'
+
 Plug 'https://github.com/luochen1990/rainbow'
 Plug 'https://github.com/neitanod/vim-clevertab'
 Plug 'https://github.com/SirVer/ultisnips'
@@ -769,12 +785,13 @@ Plug 'https://github.com/Julian/vim-textobj-variable-segment'
 Plug 'https://github.com/tmhedberg/matchit'
 Plug 'https://github.com/valloric/MatchTagAlways'
 Plug 'https://github.com/Shougo/neocomplete.vim'
-"Plug 'https://github.com/scrooloose/syntastic'
+Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/godlygeek/tabular'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/ntpeters/vim-better-whitespace'
 Plug 'https://github.com/kana/vim-operator-user'
+
 Plug 'https://github.com/airblade/vim-rooter'
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/tpope/vim-surround'
@@ -787,11 +804,16 @@ Plug 'https://github.com/wincent/Command-T'
 Plug 'https://github.com/vim-scripts/Conque-Shell'
 Plug 'https://github.com/neitanod/vim-ondemandhighlight'
 Plug 'https://github.com/tpope/vim-obsession'
-Plug 'https://github.com/spf13/PIV'
+"Plug 'https://github.com/spf13/PIV'  " SLOOOOOOW!
+"Plug 'https://github.com/m2mdas/phpcomplete-extended'
+Plug 'https://github.com/Shougo/vimproc.vim'
 Plug 'https://github.com/itchyny/vim-qfedit'
 "Plug 'https://github.com/jceb/vim-editqf'
 Plug 'https://github.com/vim-scripts/diffchar.vim'
-
+Plug 'https://github.com/gcmt/taboo.vim'
+Plug 'https://github.com/szw/vim-ctrlspace'
+"Plug 'https://github.com/tomaszj/lexplore.vim'
+Plug 'https://github.com/atweiden/vim-dragvisuals'
 
 "browser
 "calendar.vim
@@ -810,7 +832,6 @@ Plug 'https://github.com/vim-scripts/diffchar.vim'
 "tlib_vim
 "undotree
 "vim-addon-mw-utils
-"vim-ctrlspace
 "vim-easymotion
 "vim-exchange
 "vim-expand-region
@@ -981,7 +1002,6 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 set listchars=tab:▸\ ,eol:¬
 highlight NonText       guifg=#707070 ctermfg=8
 highlight SpecialKey    guifg=#707070 ctermfg=8
-nnoremap <leader>l :Unite -start-insert -auto-resize line<CR>
 
 "Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
@@ -1164,6 +1184,8 @@ nnoremap <silent> N  N:call HLNext(0.05)<cr>
 "the project root. You can also use %% anywhere in the command line to expand.
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
+"Searches current Keyword (the word under cursor) in Vim's help index
+nnoremap K "zyiw:help <C-R>z<cr>
 
 " }}}
 " --- Vim sade ------------------------------------------------------------- {{{
@@ -1211,7 +1233,7 @@ nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <leader>l :<C-u>Unite -start-insert -auto-resize line<CR>
 nnoremap <leader>R :<C-u>Unite register<CR>
 nnoremap <leader>b :<C-u>Unite -start-insert -auto-resize buffer<CR>
-nnoremap <leader>o :<C-u>Unite -auto-resize outline<CR>
+nnoremap <leader>o :<C-u>Unite -start-insert -auto-resize outline<CR>
 nnoremap <leader>f :<C-u>Unite -start-insert -auto-resize file_rec/git<CR>
 nnoremap <leader>e :<C-u>UniteWithBufferDir -start-insert -auto-resize file<CR>
 
@@ -1255,8 +1277,8 @@ let g:syntastic_auto_loc_list = 1
 " }}}
 " -------- CtrlP   {{{
 noremap <C-[><C-p> :CtrlPMRU<CR>            " Map Control-[ then Control-p  => to CtrlP in MRU mode
-noremap <C-[><C-[><C-[> '0                       " Map Control-[ twice to reopen last file
-noremap <C-[><C-[><C-p> :CtrlPYankring<CR>  " Map Control-[ then Control-p  => to CtrlP in Buffer mode
+noremap <C-[><C-[><C-[> '0                  " Map Control-[ twice to reopen last file
+" noremap <C-[><C-[><C-p> :CtrlPYankring<CR>  " Map Control-[ then Control-p  => to CtrlP in Buffer mode
 
 " Use Tim Pope's improved match algorithm from "haystack.vim" plugin
 "   CANCELLED.  Too slow. =(
@@ -1282,7 +1304,7 @@ let g:gtfo#terminals = { 'mac' : 'iterm', 'unix' : 'konsole' }
 " }}}
 " -------- NeoComplete   {{{
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 0
 "let g:neocomplete#enable_auto_select = 1
 
 if !exists('g:neocomplete#sources')
@@ -1336,13 +1358,3 @@ autocmd VimEnter * source ~/dotfiles/vimloadedrc
 "
 "
 "
-function! Cat_loc()
-  %s/Category/Location/g
-  %s/category/location/g
-  %s/Categoria/Localidad/g
-  %s/Categoría/Localidad/g
-  %s/categoria/localidad/g
-  %s/categoría/localidad/g
-endfunction
-nnoremap <leader>e :call Cat_loc()<enter><esc>
-
