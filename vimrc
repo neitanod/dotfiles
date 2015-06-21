@@ -174,7 +174,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ 
 " Hide the Tabline, since it will be controlled with CtrlSpace plugin (<C-Space>l)
 "set showtabline=0
 "nnoremap <C-Space> :CtrlSpace<CR>
-let g:ctrlspace_default_mapping_key = "<C-A>"
+let g:ctrlspace_default_mapping_key = "<C-s>"
 
 
 """"""""""""""""""""""""""""""
@@ -814,6 +814,7 @@ Plug 'https://github.com/gcmt/taboo.vim'
 Plug 'https://github.com/szw/vim-ctrlspace'
 "Plug 'https://github.com/tomaszj/lexplore.vim'
 Plug 'https://github.com/atweiden/vim-dragvisuals'
+Plug 'https://github.com/AndrewRadev/switch.vim'
 
 "browser
 "calendar.vim
@@ -915,11 +916,14 @@ cnoremap <c-e> <end>
 " Quickly edit the vimrc and TIL files
 nnoremap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <silent> <leader>T :tabedit ~/TIL.txt<CR>
-nnoremap <silent> <leader>s :tabedit ~/dotfiles/vim/UltiSnips/php.snippets<CR>
+nnoremap <silent> <leader>S :tabedit ~/dotfiles/vim/UltiSnips/php.snippets<CR>
 nnoremap <silent> <leader>n :tabedit ~/Dropbox/Public/notas/notas.md<CR>
 nnoremap <silent> <leader>p :tabedit ~/.pentadactylrc<CR>
+nnoremap <silent> <backspace> :Switch<CR>
+source $HOME/.vim/switch-definitions.vim
 
 nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
 
 " Symfony go to action and go to view
 nnoremap <expr> <leader>a match(expand('%:t'),'\.class') == -1 ? ':Saction<CR>' : ':Sview<CR>'
