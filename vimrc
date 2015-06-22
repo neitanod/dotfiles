@@ -1296,9 +1296,12 @@ endfunction
 " let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 " }}}
-" -------- LustyJuggler   {{{
-nnoremap <leader><leader> :LustyJuggler<CR>
+" -------- ControlSpace   {{{
 " }}}
+nnoremap <leader><leader> :CtrlSpace<CR>
+nnoremap <leader>j :CtrlSpaceGoDown<CR>
+nnoremap <leader>k :CtrlSpaceGoUp<CR>
+
 " -------- EasyMotion  {{{
 " Single character search, the only way of searching I will ever use:
 "map <cr> <Plug>(easymotion-f)
