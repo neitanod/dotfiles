@@ -1,0 +1,8 @@
+cd ~/misdoc/pry/inprotur
+svn ci argentina.travel.2012 -m "Commit de los ultimos cambios antes del merge"
+svn ci argentina.travel -m "Commit de los ultimos cambios antes del merge"
+svn up argentina.travel.merge -r225
+cd argentina.travel.2012
+svn diff --summarize -r1325:HEAD | cut -c9-99999 | cpio -pvdmu ../argentina.travel.merge
+cd ../argentina.travel.merge
+svn up

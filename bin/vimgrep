@@ -1,0 +1,8 @@
+if type ag >/dev/null 2>&1
+then
+  # echo "Using ag"
+  vim `ag "$1" -l` -p +/"$1"
+else
+  # echo "Using grep"
+  vim `grep "$1" . -Rl` -p +/"$1"
+fi

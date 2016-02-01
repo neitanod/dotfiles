@@ -22,3 +22,15 @@ highlight highlight_ae6ba5b4 ctermfg=150
 call matchadd('highlight_ae6ba5b4', '\<body\>')
 highlight highlight_4078ebb5 ctermbg=220 ctermfg=0
 call matchadd('highlight_4078ebb5', '\<breadcrum\>')
+highlight highlight_d6750545 ctermbg=6 ctermfg=0
+call matchadd('highlight_d6750545', '\<location_array\>')
+highlight highlight_b3d48965 ctermbg=152 ctermfg=0
+call matchadd('highlight_b3d48965', '\<instrument\>')
+highlight highlight_88e292b9 ctermbg=154 ctermfg=0
+call matchadd('highlight_88e292b9', '\<params\>')
+highlight highlight_dc220c1a ctermbg=163 ctermfg=0
+call matchadd('highlight_dc220c1a', '\<CategoriaTable\>')
+highlight highlight_879acaf0 ctermbg=75 ctermfg=0
+call matchadd('highlight_879acaf0', '\<LocalidadTable\>')
+highlight highlight_385c7e16 ctermbg=209 ctermfg=0
+call matchadd('highlight_385c7e16', '\<PrestadorTable\>')

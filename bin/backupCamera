@@ -1,0 +1,1 @@
+rsync -av --remove-source-files --bwlimit=500 --chmod=ugo=rwX -e ssh root@192.168.1.104:/storage/sdcard0/DCIM/Camera ~/Dropbox/Fotos/Sin\ clasificar

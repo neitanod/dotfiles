@@ -1,5 +1,6 @@
 mkdir ~/olddotfiles > /dev/null 2>&1
 
+mv ~/bin         ~/olddotfiles/bin
 mv ~/.vim        ~/olddotfiles/.vim
 mv ~/.vimrc      ~/olddotfiles/.vimrc
 mv ~/.vimundo    ~/olddotfiles/.vimundo
@@ -10,6 +11,7 @@ mv ~/.gitconfig  ~/olddotfiles/.gitconfig
 mv ~/.githelpers ~/olddotfiles/.githelpers
 mv ~/.mailcap    ~/olddotfiles/.mailcap
 
+ln -s ~/dotfiles/bin         ~/bin
 ln -s ~/dotfiles/vim         ~/.vim
 ln -s ~/dotfiles/vimrc       ~/.vimrc
 ln -s ~/dotfiles/vim/vimundo ~/.vimundo

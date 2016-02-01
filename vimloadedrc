@@ -1,0 +1,7 @@
+autocmd FileType javascript set keywordprg=jsman
+
+if exists("g:abbrev_matcher_grep_exe")
+  let g:ctrlp_match_func = { 'match': 'ctrlp#abbrev_matcher#match' }
+  call unite#filters#matcher_default#use(['matcher_abbrev'])
+  call unite#filters#sorter_default#use(['sorter_abbrev'])
+endif

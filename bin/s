@@ -1,0 +1,4 @@
+# xrandr --output VGA1 --auto --left-of LVDS1
+xrandr --output LVDS1 --off
+xrandr --output VGA1 --on
+xrandr --output VGA1 --primary

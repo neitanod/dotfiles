@@ -1,0 +1,2 @@
+# sudo sshfs -o sshfs_debug donatien:x4radio2012@69.163.151.132 ~/ftp/donatien 
+sudo curlftpfs -o allow_other w3ata:QwJ9Ngf6uQnNEEc@new.argentina.tur.ar ~/ftp/arturar 

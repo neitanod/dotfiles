@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+    wc << EOF
+      wc va a contar las palabras,
+      lineas y caracteres de este bloque
+      de texto que consiste en un HEREDOC,
+      es decir, un bloque que será enviado
+      a la entrada estándar del comando wc.
+      El bloque termina cuando el delimitador
+      indicado en la primer linea (en este
+      caso la palabra EOF) aparece sola
+      en una línea.
+EOF

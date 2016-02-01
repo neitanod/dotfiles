@@ -329,11 +329,8 @@ noremap gb <Esc>:BufSurfForward<Enter>
 
 " Function for abbreviating commands without messing with the whole command
   " line.  Do not use cabbrev for commands!  Use Cabbrev instead.
-fu! Single_quote(str)
-  return "'" . substitute(copy(a:str), "'", "''", 'g') . "'"
-endfu
 fu! Cabbrev(key, value)
-  exe printf('cabbrev <expr> %s (getcmdtype() == ":" && getcmdpos() <= %d) ? %s : %s', a:key, 1+len(a:key), Single_quote(a:value), Single_quote(a:key))
+  exe printf('cabbrev <expr> %s (getcmdtype() == ":" && getcmdpos() <= %d) ? %s : %s', a:key, 1+len(a:key), string(a:value), string(a:key))
 endfu
 
 " Edit Symfony schema
@@ -762,7 +759,7 @@ Plug 'https://github.com/neitanod/autoproto.vim'
 "Plug 'https://github.com/vim-scripts/autosession.vim' " replaced with Tim Pope's Obsession
 Plug 'https://github.com/duff/vim-bufonly'
 Plug 'https://github.com/rhysd/clever-f.vim'
-Plug 'https://github.com/sgur/ctrlp-extensions.vim'
+" Plug 'https://github.com/sgur/ctrlp-extensions.vim'
 Plug 'https://github.com/neitanod/vim-sade'
 
 Plug 'https://github.com/luochen1990/rainbow'
@@ -815,7 +812,9 @@ Plug 'https://github.com/szw/vim-ctrlspace'
 "Plug 'https://github.com/tomaszj/lexplore.vim'
 Plug 'https://github.com/atweiden/vim-dragvisuals'
 Plug 'https://github.com/AndrewRadev/switch.vim'
-
+Plug 'https://github.com/ktonga/vim-follow-my-lead'
+" Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
+Plug 'https://github.com/evidens/vim-twig'
 "browser
 "calendar.vim
 
@@ -883,11 +882,16 @@ endif
 " }}}
 " --- Leader mappings and other awesome mappings --------------------------- {{{
 
-" jk and kj -> Quit Insert mode
-inoremap jk <Esc>`^
-inoremap kj <Esc>`^
+" jk and kj -> Quit Insert mode (and autosave)
+" inoremap jk <Esc><Esc>`^:w<Cr>
+" inoremap kj <Esc><Esc>`^:w<Cr>
+inoremap jk <Esc><Esc>`^
+inoremap kj <Esc><Esc>`^
 cnoremap jk <C-c>
 cnoremap kj <C-c>
+
+" Autosave on CursorHold
+autocmd CursorHold * :update
 
 " ; alias for : (; does not require shift)
 nnoremap ; :
@@ -919,8 +923,18 @@ nnoremap <silent> <leader>T :tabedit ~/TIL.txt<CR>
 nnoremap <silent> <leader>S :tabedit ~/dotfiles/vim/UltiSnips/php.snippets<CR>
 nnoremap <silent> <leader>n :tabedit ~/Dropbox/Public/notas/notas.md<CR>
 nnoremap <silent> <leader>p :tabedit ~/.pentadactylrc<CR>
-nnoremap <silent> <backspace> :Switch<CR>
+" nnoremap <silent> <backspace> :Switch<CR>
 source $HOME/.vim/switch-definitions.vim
+
+" Indent the whole file
+nnoremap <silent> <leader>i mkgg=G`k
+
+nnoremap <silent> <leader>G :Gofmt<CR>
+
+function! Gofmt()
+  exec "normal! m`:% !gofmt\n``"
+endfunction
+command! Gofmt :call Gofmt()
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -928,6 +942,30 @@ nnoremap <leader>q :q<CR>
 " Symfony go to action and go to view
 nnoremap <expr> <leader>a match(expand('%:t'),'\.class') == -1 ? ':Saction<CR>' : ':Sview<CR>'
 nnoremap <leader>m :Smodel<CR>
+
+" OpenChangedFiles (<Leader>O)
+function! OpenChangedFiles()
+  only " Close all windows, unless they're modified
+  let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
+  let filenames = split(status, "\n")
+
+  if len(filenames) < 1
+    let status = system('git show --pretty="format:" --name-only')
+    let filenames = split(status, "\n")
+  endif
+
+  exec "edit " . filenames[0]
+
+  for filename in filenames[1:]
+    if len(filenames) > 3
+      exec "tabedit " . filename
+    else
+      exec "vsp " . filename
+    endif
+  endfor
+endfunction
+command! OpenChangedFiles :call OpenChangedFiles()
+noremap<Leader>O :OpenChangedFiles <CR>
 
 "visually select around function
 nnoremap vaf ?func.*\n*\s*{<cr>ma/{<cr>%mb`av`b
@@ -942,6 +980,10 @@ vnoremap MM `M
 
 " Navigate history with g-/g= instead of g-/g+ (no SHIFT needed)
 nnoremap g= g+
+
+" Navigate change list with Backspace and Enter
+nnoremap <cr> g,
+nnoremap <backspace> g;
 
 " File's git history using 'tig'
 nnoremap <leader>H :call TigHistory()<cr>
@@ -1123,7 +1165,12 @@ ca wq!! Sudowq
 
 " Replace trailing spaces and ^M
 command! TrimEOL :%s/\(\s\|\r\)\+$//
-ca trimeol TrimEOL
+
+" Replace tabs with 4 spaces
+command! FixTabs :%s/^\t/    /g
+
+" Replace tabs with 2 spaces
+command! FixTabs2 :%s/^\t/  /g
 
 " do not replace yanked text when pasting over something else
 xnoremap p pgvy
@@ -1145,7 +1192,7 @@ nnoremap <leader>r :VimuxRunLastCommand<CR>
 nnoremap <leader>r mmyy:@"<Enter>`m
 
 " <leader>c -> run current line as SHELL command
-nnoremap <leader>c o<Esc>dG0i:r!<Space><Esc>mnyy:@"<Enter>`nld0
+"nnoremap <leader>c o<Esc>dG0i:r!<Space><Esc>mnyy:@"<Enter>`nld0
 
 " <leader>u -> "update code (using shellscript generator)":
 " run text between delimiters {%{ and }%} (in current line only) as bash command
@@ -1278,11 +1325,19 @@ let g:airline_exclude_preview = 1 "needed by CtrlSpace plugin
 " -------- Syntastic   {{{
 " Automatically open error list when errors are detected.
 let g:syntastic_auto_loc_list = 1
+" Dont run syntastic on save:
+
 " }}}
 " -------- CtrlP   {{{
 noremap <C-[><C-p> :CtrlPMRU<CR>            " Map Control-[ then Control-p  => to CtrlP in MRU mode
-noremap <C-[><C-[><C-[> '0                  " Map Control-[ twice to reopen last file
+noremap <C-e> :CtrlP %:p:h<CR>              " Control-p in folder of current file instead of project
+noremap <C-y> :CtrlP %:p:h/..<CR>           " Control-p in folder PARENT of current file's 
+noremap <C-[><C-[> '0                       " Map Control-[ twice to reopen last file
 " noremap <C-[><C-[><C-p> :CtrlPYankring<CR>  " Map Control-[ then Control-p  => to CtrlP in Buffer mode
+
+" if exists("g:abbrev_matcher_grep_exe")  " not loaded yet, conditional does not work.  Moved to vimloadedrc
+"  let g:ctrlp_match_func = { 'match': 'ctrlp#abbrev_matcher#match' }
+" endif
 
 " Use Tim Pope's improved match algorithm from "haystack.vim" plugin
 "   CANCELLED.  Too slow. =(
@@ -1360,8 +1415,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 " }}}
 " }}}
 " --- Continue with the commands of this file, but after loading plugins --- {{{
-autocmd VimEnter * source ~/dotfiles/vimloadedrc 
+autocmd VimEnter * source ~/dotfiles/vimloadedrc
 " }}}
-"
 "
 "

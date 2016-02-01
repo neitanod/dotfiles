@@ -1,0 +1,1 @@
+links -dump "http://www.google.com/search?q=site:http://developer.mozilla.org/en $1&btnI=1" | grep -A5000 -B2 -m1 -e '^Syntax$' | grep -B5000 -A2 -m1 -e '^See also$'>~/.vim/doc/js-$1.txt
