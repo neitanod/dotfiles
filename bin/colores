@@ -1,0 +1,19 @@
+#!/bin/bash
+for i in {0..15} ; do
+    if (( (( $i+1 )) % 6 ))  
+    then
+      printf "\x1b[38;5;${i}mcolour__${i}\t"
+    else
+      printf "\x1b[38;5;${i}mcolour__${i}\n"
+    fi
+done
+echo ""
+for i in {16..255} ; do
+    if (( $i % 6 ))  
+    then
+      printf "\x1b[38;5;${i}mcolour__${i}\t"
+    else
+      printf "\x1b[38;5;${i}mcolour__${i}\n"
+    fi
+done
+echo ""

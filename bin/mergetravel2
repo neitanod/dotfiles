@@ -1,0 +1,8 @@
+cd ~/misdoc/pry/inprotur
+cd argentina.travel.merge
+svn add --force .
+echo Haciendo commit de lo mergeado...
+svn ci -m "Merge de los fixes de mantenimiento de version 2012 a 2013"
+echo Listo!
+cd ../argentina.travel
+svn up

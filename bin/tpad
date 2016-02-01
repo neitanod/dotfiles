@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Esto lo había puesto para que de paso repare la visualización del segundo monitor:
+#xrandr --output VGA1 --gamma 1:1:1 --rotate inverted
+#xrandr --output VGA1 --gamma 1:1:1 --rotate normal
+
+if [ -f ~/.tpdisabled ]; then
+  synclient TouchpadOff=0 
+  rm ~/.tpdisabled
+  echo Touchpad Enabled
+else
+  synclient TouchpadOff=1 
+  touch ~/.tpdisabled
+  echo Touchpad Disabled
+fi

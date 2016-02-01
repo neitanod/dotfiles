@@ -1,0 +1,3 @@
+#!/bin/bash
+php "$HOME/bin/gotodir/gd.php" $*
+#$HOME/gotopath

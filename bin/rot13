@@ -1,0 +1,3 @@
+#!/usr/bin/env php
+<?php
+echo str_rot13(file_get_contents("php://stdin"));

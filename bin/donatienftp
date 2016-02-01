@@ -1,0 +1,1 @@
+sudo curlftpfs -o allow_other donatienftp:x4radio2012@falcons.dreamhost.com ~/ftp/donatienftp 

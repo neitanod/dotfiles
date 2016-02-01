@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -f ~/.dual-screen-disabled ]; then
+  on
+  rm ~/.dual-screen-disabled
+  echo Dual Screen Enabled
+else
+  off
+  touch ~/.dual-screen-disabled
+  echo Dual Screen Disabled
+fi

@@ -1,0 +1,9 @@
+#cd ~/bin/ip-data
+#wget -q http://myip.es --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36" --no-cache --output-document=myip_es_last_response.html 
+#grep "Su Dirección IP Es: " myip_es_last_response.html | sed "s/<span>Su Dirección IP Es: //" | sed "s|</span>||" > last_ip.txt
+#wget -q --output-document=dnsdynamic_org_last_response.txt --http-user=grignoli@gmail.com --http-password=tempored https://www.dnsdynamic.org/api/?hostname=sebas.tempors.com&myip=`cat last_ip.txt`
+#echo \
+wget -q --output-document=dnsdynamic_org_last_response.txt \
+        --http-user=grignoli@gmail.com \
+        --http-password=tempored \
+        https://www.dnsdynamic.org/api/?hostname=sebas.tempors.com\&myip=`curl ifconfig.me`

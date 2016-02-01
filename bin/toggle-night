@@ -1,0 +1,10 @@
+if [ -f $HOME/.redshift_enabled ]
+then
+  redshift -O 6500K
+  echo "Night mode disabled"
+  rm $HOME/.redshift_enabled
+else
+  redshift -O 3500K
+  echo "Night mode enabled"
+  touch $HOME/.redshift_enabled
+fi
