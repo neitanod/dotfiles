@@ -24,4 +24,4 @@ ln -s ~/dotfiles/mailcap     ~/.mailcap
 
 rm -rf ~/dotfiles/oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh
-cp ~/dotfiles/oh-my-custom/* ~/dotfiles/oh-my-zsh/custom/ -R
+ln -s ~/dotfiles/oh-my-custom ~/dotfiles/oh-my-zsh/custom
