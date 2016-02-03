@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ $# -eq 0 ]    # $# contiene la cantidad de argumentos pasados
+  then
+        echo
+        echo "Usage:    localhost <hostname>"
+        echo
+        echo "   will add to /etc/hosts:"
+        echo "         127.0.0.1 <hostname>"
+        echo "         127.0.0.1 debug.<hostname>"
+        echo "         127.0.0.1 admin.<hostname>"
+        echo "         127.0.0.1 debug.admin.<hostname>"
+    exit 1                     # Abandona el script porque lo
+                               # consideramos un error
+fi
+
+sudo cp /etc/hosts /etc/hosts_bak
+sudo bash -c "echo >> /etc/hosts"
+sudo bash -c "echo 127.0.0.1 $1 >> /etc/hosts"
+sudo bash -c "echo 127.0.0.1 debug.$1 >> /etc/hosts"
+sudo bash -c "echo 127.0.0.1 admin.$1 >> /etc/hosts"
+sudo bash -c "echo 127.0.0.1 debug.admin.$1 >> /etc/hosts"
