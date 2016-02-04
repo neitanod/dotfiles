@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -eq 0 ]    # $# contiene la cantidad de argumentos pasados
+  then
+        echo
+        echo "Usage:    zipdirectory <folder_name>"
+        echo
+        echo "   will recursively compress the contents of <folder_name> into "
+        echo "   <folder_name>.tar.gz in the current working path."
+    exit 1                     # Abandona el script porque lo
+                               # consideramos un error
+fi
+tar -zcvf $1.tar.gz $1
