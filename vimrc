@@ -5,6 +5,8 @@
 
 " --- Sanity defaults ------------------------------------------------------ {{{
 set nocompatible
+scriptencoding utf-8
+set encoding=utf-8
 
 " Make Y behave like D and C
 nnoremap Y y$
@@ -73,8 +75,8 @@ set whichwrap+=<,>,[,]
 "set t_ut=
 "set t_Co=256
 
-set encoding=utf8 "For the terminal, not the files
-set fileencoding=utf8 "For the terminal, not the files
+set encoding=utf-8 "For the terminal, not the files
+set fileencoding=utf-8 "For the terminal, not the files
 set ffs=unix,dos,mac "Default file types
 
 set nobackup

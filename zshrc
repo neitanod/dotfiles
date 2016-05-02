@@ -50,14 +50,14 @@ export TERM=xterm-256color
 function gd()
 {
  $HOME/bin/gd $*
-  `cat $HOME/gotopath`
+  `cat $HOME/.gotopath`
 
 }
 
 function ga()
 {
  $HOME/bin/ga $*
-  `cat $HOME/gotopath`
+  `cat $HOME/.gotopath`
 }
 
 [[ -n "${key[Up]}"      ]] && bindkey  "${key[Up]}"      history-beginning-search-backward

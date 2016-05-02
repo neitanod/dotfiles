@@ -1,0 +1,7 @@
+if [ -e ~/.launcher-at-bottom ] ; then
+  gsettings set com.canonical.Unity.Launcher launcher-position Left
+  rm ~/.launcher-at-bottom
+else
+  gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+  echo "This file (used by ~/bin/launcer-position-toggle) indicates that the Unity Launcher is at the bottom of the desktop." > ~/.launcher-at-bottom
+fi
