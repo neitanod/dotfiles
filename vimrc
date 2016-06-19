@@ -174,7 +174,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ 
 " => Tabline
 """"""""""""""""""""""""""""""
 " Hide the Tabline, since it will be controlled with CtrlSpace plugin (<C-Space>l)
-"set showtabline=0
+set showtabline=0
 "nnoremap <C-Space> :CtrlSpace<CR>
 let g:ctrlspace_default_mapping_key = "<C-s>"
 
@@ -784,6 +784,7 @@ Plug 'https://github.com/Julian/vim-textobj-variable-segment'
 Plug 'https://github.com/tmhedberg/matchit'
 Plug 'https://github.com/valloric/MatchTagAlways'
 Plug 'https://github.com/Shougo/neocomplete.vim'
+Plug 'https://github.com/Shougo/neoyank.vim'
 Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/godlygeek/tabular'
 Plug 'https://github.com/tpope/vim-fugitive'
@@ -817,6 +818,7 @@ Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/ktonga/vim-follow-my-lead'
 " Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
 Plug 'https://github.com/evidens/vim-twig'
+Plug 'https://github.com/embear/vim-foldsearch'
 "browser
 "calendar.vim
 
@@ -1335,11 +1337,22 @@ noremap <C-[><C-p> :CtrlPMRU<CR>            " Map Control-[ then Control-p  => t
 noremap <C-e> :CtrlP %:p:h<CR>              " Control-p in folder of current file instead of project
 noremap <C-y> :CtrlP %:p:h/..<CR>           " Control-p in folder PARENT of current file's 
 noremap <C-[><C-[> '0                       " Map Control-[ twice to reopen last file
+" noremap <leader>p <C-p><C-\>w               " I feel lucky -> Jump to Ctrl-P search for word under cursor
 " noremap <C-[><C-[><C-p> :CtrlPYankring<CR>  " Map Control-[ then Control-p  => to CtrlP in Buffer mode
 
 " if exists("g:abbrev_matcher_grep_exe")  " not loaded yet, conditional does not work.  Moved to vimloadedrc
 "  let g:ctrlp_match_func = { 'match': 'ctrlp#abbrev_matcher#match' }
 " endif
+
+
+function! LazyP()
+  let g:ctrlp_default_input = expand('<cword>')
+  CtrlP
+  let g:ctrlp_default_input = ''
+endfunction
+command! LazyP call LazyP()
+nnoremap <C-L> :LazyP<CR><CR> 
+
 
 " Use Tim Pope's improved match algorithm from "haystack.vim" plugin
 "   CANCELLED.  Too slow. =(
@@ -1358,6 +1371,8 @@ endfunction
 nnoremap <leader><leader> :CtrlSpace<CR>
 nnoremap <leader>j :CtrlSpaceGoDown<CR>
 nnoremap <leader>k :CtrlSpaceGoUp<CR>
+
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 
 " -------- EasyMotion  {{{
 " Single character search, the only way of searching I will ever use:

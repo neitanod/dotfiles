@@ -1,0 +1,1 @@
+sudo usb_modeswitch -c /etc/usb_modeswitch.d/12d1:1c0b
