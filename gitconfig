@@ -55,5 +55,6 @@
   tool = meld
 [core]
 	autocrlf = input
+	quotepath = false
 [push]
 	default = simple

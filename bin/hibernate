@@ -1,0 +1,2 @@
+sudo /bin/systemctl hibernate
+#gksudo -k -u root /bin/systemctl hibernate

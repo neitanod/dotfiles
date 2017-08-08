@@ -61,7 +61,10 @@ if has('gui_running')
 endif
 
 "set gfn=Inconsolata\ Medium\ 10
-set gfn=DejaVu\ Sans\ Mono\ 10
+"set gfn=DejaVu\ Sans\ Mono\ 10
+set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+
+set printfont=DejaVu\ Sans\ Mono:h10
 
 " Better navigation for long lines
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -97,12 +100,12 @@ set wildmenu "Turn on WiLd menu
 set cmdheight=2 "The commandbar height
 
 "set nowrap        " don't wrap lines
-set tabstop=2     " a tab is four spaces
+set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-set shiftwidth=2  " number of spaces to use for autoindenting
+set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
@@ -174,7 +177,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ 
 " => Tabline
 """"""""""""""""""""""""""""""
 " Hide the Tabline, since it will be controlled with CtrlSpace plugin (<C-Space>l)
-set showtabline=0
+" set showtabline=0
 "nnoremap <C-Space> :CtrlSpace<CR>
 let g:ctrlspace_default_mapping_key = "<C-s>"
 
@@ -336,7 +339,7 @@ fu! Cabbrev(key, value)
 endfu
 
 " Edit Symfony schema
-call Cabbrev("Sch","e config/doctrine/schema.yml")
+call Cabbrev("Sch","e app/model/schema.yml")
 
 " hide buffers instead of closing them.
 " (needed by LustyExplorer and CtrlSpace)
@@ -392,7 +395,8 @@ nnoremap <leader>C #``cgN
 inoremap <? <?php<Space><Space>?><Left><Left><Left>
 inoremap <a <a<Space>href=""></a><Left><Left><Left><Left><Left><Left>
 inoremap <d <div></div><Left><Left><Left><Left><Left><Left>
-inoremap <b <body></body><Left><Left><Left><Left><Left><Left><Left>
+inoremap <bo <body></body><Left><Left><Left><Left><Left><Left><Left>
+inoremap <br <br/>
 inoremap <ht <html></html><Left><Left><Left><Left><Left><Left><Left>
 inoremap <h1 <h1></h1><Left><Left><Left><Left><Left>
 inoremap <h2 <h2></h2><Left><Left><Left><Left><Left>
@@ -743,9 +747,12 @@ command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 try
+Plug 'beanworks/vim-phpfmt'
+Plug 'arnaud-lb/vim-php-namespace'
 Plug 'https://github.com/junegunn/vim-easy-align'
 "Plug 'https://github.com/tpope/vim-haystack'
-Plug 'https://github.com/kien/ctrlp.vim'
+"Plug 'https://github.com/kien/ctrlp.vim'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/tacahiroy/ctrlp-funky'
 Plug 'https://github.com/mattn/ctrlp-register'
 Plug 'https://github.com/bling/vim-airline'
@@ -764,6 +771,7 @@ Plug 'https://github.com/rhysd/clever-f.vim'
 " Plug 'https://github.com/sgur/ctrlp-extensions.vim'
 Plug 'https://github.com/neitanod/vim-sade'
 
+Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/luochen1990/rainbow'
 Plug 'https://github.com/neitanod/vim-clevertab'
 Plug 'https://github.com/SirVer/ultisnips'
@@ -1272,11 +1280,24 @@ function! TranslateThis()
   :normal! a')?>
 endfunction
 
+command! Php :silent % ! phpcbf --standard=PSR2<ENTER>
+cabbrev php Php
 
+" ALT-SHIFT-L runs the PHP formatter (just like PHPStorm does) :D
+nnoremap L <ESC>m`:Php<ENTER>``
+
+" Map ALT-j:  nnoremap j <command>
+" Map ALT-k:  nnoremap k <command>
+" Map ALT-h:  nnoremap h <command>
+" Map ALT-l:  nnoremap l <command>
 
 " }}}
 " --- Plugins config ------------------------------------------------------- {{{
 " -------- Unite       {{{
+
+let g:phpfmt_standard = 'PEAR'
+let g:phpfmt_command = '~/bin/phpcbf'
+let g:phpfmt_tmp_dir = '~/'
 
 let g:unite_data_directory = '~/.unite'
 let g:unite_abbr_highlight = 'normal'
@@ -1285,12 +1306,20 @@ if exists("unite#filters#matcher")
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
 endif
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
-nnoremap <leader>l :<C-u>Unite -start-insert -auto-resize line<CR>
+nnoremap <leader>sl :<C-u>Unite -start-insert -auto-resize line<CR>
 nnoremap <leader>R :<C-u>Unite register<CR>
 nnoremap <leader>b :<C-u>Unite -start-insert -auto-resize buffer<CR>
-nnoremap <leader>o :<C-u>Unite -start-insert -auto-resize outline<CR>
+nnoremap <leader>so :<C-u>Unite -start-insert -auto-resize outline<CR>
 nnoremap <leader>f :<C-u>Unite -start-insert -auto-resize file_rec/git<CR>
 nnoremap <leader>e :<C-u>UniteWithBufferDir -start-insert -auto-resize file<CR>
+
+nmap <leader>oc :CtrlP<CR>app/controllers/
+nmap <leader>os :CtrlP<CR>schemayml<CR>
+nmap <leader>om :CtrlP<CR>app/model/
+nmap <leader>ov :CtrlP<CR>app/views/
+nmap <leader>oh :CtrlP<CR>app/helpers/
+nmap <leader>ow :CtrlP<CR>web/
+nmap <leader>op :CtrlP<CR>web/panel_files/
 
 " }}}
 " -------- GitGutter   {{{
@@ -1317,6 +1346,7 @@ let g:DVB_TrimWS = 1
 " -------- Powerline and Airline   {{{
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_dividers_override = ['', '', '', '']
+"let g:Powerline_dividers_override = ['', '', '', '']
 "let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
 "let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
 "let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
@@ -1325,11 +1355,41 @@ let g:airline_powerline_fonts = 1
 "let g:airline_detect_whitespace = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_exclude_preview = 1 "needed by CtrlSpace plugin
+
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+let g:airline_left_sep = ''
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+let g:airline_right_sep = ''
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+
 " }}}
 " -------- Syntastic   {{{
 " Automatically open error list when errors are detected.
 let g:syntastic_auto_loc_list = 1
-" Dont run syntastic on save:
+let g:syntastic_loc_list_height = 2
+let g:syntastic_quiet_messages = { "type": "style" }
+
 
 " }}}
 " -------- CtrlP   {{{
@@ -1372,7 +1432,7 @@ nnoremap <leader><leader> :CtrlSpace<CR>
 nnoremap <leader>j :CtrlSpaceGoDown<CR>
 nnoremap <leader>k :CtrlSpaceGoUp<CR>
 
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+" let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 
 " -------- EasyMotion  {{{
 " Single character search, the only way of searching I will ever use:

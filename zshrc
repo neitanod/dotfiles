@@ -40,7 +40,9 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=$PATH:/usr/local/go/bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
-export GOPATH=/home/sebas/gocode
+export GOPATH=/home/sebas/doc/prj/go
+
+export MAIL_DRIVER=log
 
 unsetopt auto_name_dirs
 unsetopt autonamedirs

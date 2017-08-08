@@ -18,11 +18,14 @@ function git_prompt_suffix() {
   echo "$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-alias diff='git difftool -g -y & ' 
-alias cola='git-cola & ' 
-alias gitcal='git-cal ' 
+alias diff='git difftool -g -y & '
+alias cola='git-cola & '
+alias gitcal='git-cal '
 alias push='git push '
 alias pull='git pull '
 alias merge='git merge '
+alias into='git merge-to '
 alias st='git st '
 alias ci='git ci '
+alias co='git co '
+alias master='git co master'

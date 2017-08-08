@@ -14,8 +14,6 @@ highlight highlight_88fa9f69 ctermbg=181 ctermfg=0
 call matchadd('highlight_88fa9f69', '\<original\>')
 highlight highlight_c8751d37 ctermbg=129 ctermfg=0
 call matchadd('highlight_c8751d37', '\<filtered\>')
-highlight highlight_9e7b9647 ctermbg=42 ctermfg=0
-call matchadd('highlight_9e7b9647', '\<this\>')
 highlight highlight_e73af363 ctermbg=69 ctermfg=0
 call matchadd('highlight_e73af363', '\<o\>')
 highlight highlight_ae6ba5b4 ctermfg=150
@@ -34,3 +32,11 @@ highlight highlight_879acaf0 ctermbg=75 ctermfg=0
 call matchadd('highlight_879acaf0', '\<LocalidadTable\>')
 highlight highlight_385c7e16 ctermbg=209 ctermfg=0
 call matchadd('highlight_385c7e16', '\<PrestadorTable\>')
+highlight highlight_3737d980 ctermfg=215
+call matchadd('highlight_3737d980', '\<PathHelper\>')
+highlight highlight_189d70d7 ctermbg=221 ctermfg=0
+call matchadd('highlight_189d70d7', '\<self\>')
+highlight highlight_a228e1d4 ctermbg=115 ctermfg=0
+call matchadd('highlight_a228e1d4', '\<inspect\>')
+highlight highlight_9e7b9647 ctermbg=82 ctermfg=0
+call matchadd('highlight_9e7b9647', '\<this\>')
