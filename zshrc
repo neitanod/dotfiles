@@ -38,9 +38,10 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/go/bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
-
+export GOROOT=$HOME/doc/prj/go/go-1.10/
 export GOPATH=/home/sebas/doc/prj/go
+
+export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
 export MAIL_DRIVER=log
 
@@ -70,3 +71,5 @@ source ~/.fzf.zsh
 fi
 
 setxkbmap -option
+
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

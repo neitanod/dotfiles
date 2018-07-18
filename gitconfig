@@ -53,6 +53,10 @@
   tool = meld
 [merge]
   tool = meld
+[difftool]
+  tool = meld
+[difftool "meld"]
+  cmd = meld "$LOCAL" "$REMOTE"
 [core]
 	autocrlf = input
 	quotepath = false

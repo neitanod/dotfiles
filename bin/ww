@@ -1,0 +1,3 @@
+#!/bin/bash
+watch -n550 xx &
+watch -n$(( ( RANDOM % 10 )  + 50 )) yy

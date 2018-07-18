@@ -56,15 +56,15 @@ hi Comment         ctermfg=15  ctermbg=237
 " highlight Normal ctermbg=NONE
 " highlight NonText ctermbg=NONE
 
-if has('gui_running')
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-endif
-
 "set gfn=Inconsolata\ Medium\ 10
 "set gfn=DejaVu\ Sans\ Mono\ 10
 set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 set printfont=DejaVu\ Sans\ Mono:h10
+
+if has('gui_running')
+  set guifont=Ubuntu\ Mono\ 12
+endif
 
 " Better navigation for long lines
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -493,7 +493,7 @@ call Cabbrev("shell", "Shell")
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:UltiSnipsExpandTrigger       = '<tab>'
+let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsExpandTrigger       = '<F5>'
 let g:UltiSnipsListSnippets        = '<c-tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
@@ -747,6 +747,11 @@ command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 try
+Plug 'posva/vim-vue'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'tomlion/vim-solidity'
 Plug 'beanworks/vim-phpfmt'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'https://github.com/junegunn/vim-easy-align'
@@ -872,7 +877,7 @@ highlight NonText ctermbg=NONE
 " --- Auto reload .vimrc --------------------------------------------------- {{{
 augroup myvimrc
   au!
-  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif 
+  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
 augroup END
 
 " }}}
@@ -1281,7 +1286,6 @@ function! TranslateThis()
 endfunction
 
 command! Php :silent % ! phpcbf --standard=PSR2<ENTER>
-cabbrev php Php
 
 " ALT-SHIFT-L runs the PHP formatter (just like PHPStorm does) :D
 nnoremap L <ESC>m`:Php<ENTER>``
@@ -1479,14 +1483,24 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 
 " }}}
 " -------- Clever Tab:  Uses UltiSnips+Keyword+Omni completion chain   {{{
-  inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+  " inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+  "                       \<c-r>=CleverTab#Complete('tab')<cr>
+  "                       \<c-r>=CleverTab#Complete('ultisnips')<cr>
+  "                       \<c-r>=CleverTab#Complete('keyword')<cr>
+  "                       \<c-r>=CleverTab#Complete('neocomplete')<cr>
+  "                       \<c-r>=CleverTab#Complete('omni')<cr>
+  "                       \<c-r>=CleverTab#Complete('stop')<cr>
+  " inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+
+    inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
                         \<c-r>=CleverTab#Complete('tab')<cr>
                         \<c-r>=CleverTab#Complete('ultisnips')<cr>
                         \<c-r>=CleverTab#Complete('keyword')<cr>
                         \<c-r>=CleverTab#Complete('neocomplete')<cr>
                         \<c-r>=CleverTab#Complete('omni')<cr>
                         \<c-r>=CleverTab#Complete('stop')<cr>
-  inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+    inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+
 " }}}
 " -------- On demand highlight   {{{
 " }}}

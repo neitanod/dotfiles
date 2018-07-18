@@ -1,39 +1,9 @@
 let g:ondemand_highlight_enabled = 1
 call clearmatches()
-highlight highlight_ec6059eb ctermbg=119 ctermfg=0
-call matchadd('highlight_ec6059eb', '\<OnDemandHighlightShow\>')
-highlight highlight_8eb174f5 ctermbg=77 ctermfg=0
-call matchadd('highlight_8eb174f5', '\<persisted\>')
-highlight highlight_17c537fb ctermbg=155 ctermfg=0
-call matchadd('highlight_17c537fb', '\<let\>')
 highlight highlight_05adc861 ctermfg=77
 call matchadd('highlight_05adc861', '$o ')
-highlight highlight_a5b95921 ctermbg=34 ctermfg=0
-call matchadd('highlight_a5b95921', '\<bloque\>')
-highlight highlight_88fa9f69 ctermbg=181 ctermfg=0
-call matchadd('highlight_88fa9f69', '\<original\>')
-highlight highlight_c8751d37 ctermbg=129 ctermfg=0
-call matchadd('highlight_c8751d37', '\<filtered\>')
-highlight highlight_e73af363 ctermbg=69 ctermfg=0
-call matchadd('highlight_e73af363', '\<o\>')
-highlight highlight_ae6ba5b4 ctermfg=150
-call matchadd('highlight_ae6ba5b4', '\<body\>')
-highlight highlight_4078ebb5 ctermbg=220 ctermfg=0
-call matchadd('highlight_4078ebb5', '\<breadcrum\>')
-highlight highlight_d6750545 ctermbg=6 ctermfg=0
-call matchadd('highlight_d6750545', '\<location_array\>')
-highlight highlight_b3d48965 ctermbg=152 ctermfg=0
-call matchadd('highlight_b3d48965', '\<instrument\>')
 highlight highlight_88e292b9 ctermbg=154 ctermfg=0
 call matchadd('highlight_88e292b9', '\<params\>')
-highlight highlight_dc220c1a ctermbg=163 ctermfg=0
-call matchadd('highlight_dc220c1a', '\<CategoriaTable\>')
-highlight highlight_879acaf0 ctermbg=75 ctermfg=0
-call matchadd('highlight_879acaf0', '\<LocalidadTable\>')
-highlight highlight_385c7e16 ctermbg=209 ctermfg=0
-call matchadd('highlight_385c7e16', '\<PrestadorTable\>')
-highlight highlight_3737d980 ctermfg=215
-call matchadd('highlight_3737d980', '\<PathHelper\>')
 highlight highlight_189d70d7 ctermbg=221 ctermfg=0
 call matchadd('highlight_189d70d7', '\<self\>')
 highlight highlight_a228e1d4 ctermbg=115 ctermfg=0

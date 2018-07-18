@@ -1,4 +1,0 @@
-wmctrl -r :ACTIVE: -b remove,fullscreen
-wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
-wmctrl -r :ACTIVE: -e 0,845,0,835,800
-wmctrl -r :ACTIVE: -b add,maximized_vert
