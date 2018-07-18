@@ -1,2 +1,2 @@
 #!/bin/bash
-source ~/misdoc/pry/github/data/data "$@"
+source ~/doc/prj/command-line-data/data "$@"
