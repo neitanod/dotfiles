@@ -776,6 +776,7 @@ Plug 'https://github.com/rhysd/clever-f.vim'
 " Plug 'https://github.com/sgur/ctrlp-extensions.vim'
 Plug 'https://github.com/neitanod/vim-sade'
 
+Plug 'https://github.com/nathanaelkane/vim-indent-guides'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/luochen1990/rainbow'
 Plug 'https://github.com/neitanod/vim-clevertab'
@@ -1461,6 +1462,14 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 \   'php' : $HOME.'/php.dict',
 \   'html' : $HOME.'/php.dict'
 \ }
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black    ctermbg=black
+autocmd VimEnter,Colorscheme,BufEnter * :hi IndentGuidesOdd  guibg=darkgrey ctermbg=darkgrey
+autocmd VimEnter,Colorscheme,BufEnter * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 
 "if !exists('g:neocomplete#sources#omni#input_patterns')
 "	let g:neocomplete#sources#omni#input_patterns = {}

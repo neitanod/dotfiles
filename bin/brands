@@ -1,0 +1,1 @@
+query 'select CONCAT("[",u.id,"] ", u.name), "", CONCAT(" [", b.id,"] ",b.name) from users u inner join brands b on u.id = b.user_id'
