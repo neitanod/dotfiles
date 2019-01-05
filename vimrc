@@ -1,6 +1,7 @@
 " Source this buffer like this:    gg VGy    <Esc> :@"
 
-" Or source it from the Internet directly:
+"5 Or source it from the Internet directly:
+"l[directlyl[pl]]
 "        :so http://jaku.com.ar/vimrc
 
 " --- Sanity defaults ------------------------------------------------------ {{{

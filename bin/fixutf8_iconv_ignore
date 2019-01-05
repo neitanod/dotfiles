@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+require_once("Encoding.php");
+
+//setlocale(LC_CTYPE, 'en_AU.utf8');
+
+if(empty($argv[1])) {
+    while($f = fgets(STDIN)){
+        echo ForceUTF8\Encoding::fixUTF8($f, ForceUTF8\Encoding::ICONV_IGNORE);
+    }
+} else {
+    if(!file_exists($argv[1])){
+        echo("Specifiy the file to convert or pipe some text.\n");
+        die();
+    } else {
+        $filename = $argv[1];
+        echo($filename."\n");
+        $file = fopen($filename, "r");
+        $output = null;
+        if(!empty($argv[2]) && $argv[2] == "replace") {
+            $output_filename = "output_".$argv[1];
+            $output = fopen($output_filename, "w");
+        }
+
+        while($f = fgets($file)){
+            if(!is_null($output)) {
+                fputs($output, ForceUTF8\Encoding::fixUTF8($f, ForceUTF8\Encoding::ICONV_IGNORE));
+            } else {
+                echo ForceUTF8\Encoding::fixUTF8($f, ForceUTF8\Encoding::ICONV_IGNORE);
+            }
+        }
+        fclose($file);
+        if(!is_null($output)) fclose($output);
+        unlink($filename);
+        rename($output_filename, $filename);
+    }
+}

@@ -11,7 +11,7 @@ alias :vsp="tmux -2 split-window -h"
 alias :sp="tmux -2 split-window"
 alias tmuxc="vim ~/.tmux.conf"
 alias bashrc="vim ~/.bashrc"
-
+alias lls="ls -la | lolcat"
 alias :w="tmux command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -32768 ; save-buffer %1 ; delete-buffer ; new-window \"vim %1\" '"
 
 fancy-ctrl-z () {

@@ -39,7 +39,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export GOROOT=$HOME/doc/prj/go/go-1.10/
-export GOPATH=/home/sebas/doc/prj/go
+export GOPATH=/home/sebas/doc/prj/go/go-1.10/
 
 export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
@@ -73,3 +73,4 @@ fi
 setxkbmap -option
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+.  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null

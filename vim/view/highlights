@@ -10,3 +10,5 @@ highlight highlight_a228e1d4 ctermbg=115 ctermfg=0
 call matchadd('highlight_a228e1d4', '\<inspect\>')
 highlight highlight_9e7b9647 ctermbg=82 ctermfg=0
 call matchadd('highlight_9e7b9647', '\<this\>')
+highlight highlight_d91a3cfe ctermfg=98
+call matchadd('highlight_d91a3cfe', ');')

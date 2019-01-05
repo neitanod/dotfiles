@@ -1,3 +1,15 @@
 #!/bin/bash
+watch -n$(( ( RANDOM % 50 ) + ( RANDOM % 11 ) )) mm &
+PID1=$!
+watch -n$(( ( RANDOM % 30 ) + ( RANDOM % 30 ) )) yy &
+PID2=$!
 watch -n550 xx &
-watch -n$(( ( RANDOM % 10 )  + 50 )) yy
+PID3=$!
+
+sleep 65 &
+PID=$!
+wait $PID
+
+kill -9 $PID1 $PID2 $PID3
+
+exec ww

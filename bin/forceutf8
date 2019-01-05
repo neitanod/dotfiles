@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+require_once("Encoding.php");
+
+if(empty($argv[1])) {
+    while($f = fgets(STDIN)){
+        echo ForceUTF8\Encoding::toUTF8($f);
+    }
+} else {
+    if(!file_exists($argv[1])){
+        echo("Specifiy the file to convert or pipe some text.\n");
+        die();
+    } else {
+        $filename = $argv[1];
+        echo($filename."\n");
+        $file = fopen($filename, "r");
+        $output = null;
+        if(!empty($argv[2]) && $argv[2] == "replace") {
+            $output_filename = "output_".$argv[1];
+            $output = fopen($output_filename, "w");
+        }
+
+        while($f = fgets($file)){
+            if(!is_null($output)) {
+                fputs($output, ForceUTF8\Encoding::toUTF8($f));
+            } else {
+                echo ForceUTF8\Encoding::toUTF8($f);
+            }
+        }
+        fclose($file);
+        if(!is_null($output)) fclose($output);
+        unlink($filename);
+        rename($output_filename, $filename);
+    }
+}

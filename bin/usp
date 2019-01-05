@@ -1,0 +1,9 @@
+ga usp
+if  git co usp_client_messaging ; then
+
+vim -p \
+app/views/PanelClient/resources/assets/js/components/MessageCompose.vue \
+app/views/PanelClient/resources/assets/js/components/Messages.vue \
+app/controllers/PanelClient/MessagesApiController.php
+
+fi

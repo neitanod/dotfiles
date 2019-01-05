@@ -1,3 +1,3 @@
 #!/bin/bash
 killall plasmashell
-plasmashell --shut-up &
+plasmashell & # --shut-up &
