@@ -138,3 +138,7 @@ alias :w="tmux command-prompt -p 'save history to filename:' -I '~/tmux.history'
 if [ -f ~/.fzf.bash ]; then
 source ~/.fzf.bash
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

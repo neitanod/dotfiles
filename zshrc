@@ -33,7 +33,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git k)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,7 +43,7 @@ export GOPATH=/home/sebas/doc/prj/go/go-1.10/
 
 export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
-export MAIL_DRIVER=log
+#export MAIL_DRIVER=log
 
 unsetopt auto_name_dirs
 unsetopt autonamedirs

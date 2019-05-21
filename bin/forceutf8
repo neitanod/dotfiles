@@ -11,13 +11,16 @@ if(empty($argv[1])) {
     if(!file_exists($argv[1])){
         echo("Specifiy the file to convert or pipe some text.\n");
         die();
+    } else if(!is_file($argv[1])) {
+        echo($argv[1]." is a directory.\n");
+        die();
     } else {
         $filename = $argv[1];
         echo($filename."\n");
         $file = fopen($filename, "r");
         $output = null;
         if(!empty($argv[2]) && $argv[2] == "replace") {
-            $output_filename = "output_".$argv[1];
+            $output_filename = $argv[1].".forceutf8";
             $output = fopen($output_filename, "w");
         }
 
