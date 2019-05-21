@@ -1,0 +1,3 @@
+#!/bin/bash
+#sudo mongod --fork --logpath /var/log/mongodb.log --dbpath /var/mongodb/data/db
+sudo mongod --logpath /var/log/mongodb.log --dbpath /var/mongodb/data/db

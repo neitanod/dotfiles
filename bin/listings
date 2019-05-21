@@ -1,0 +1,6 @@
+if [ "$1" = "" ]
+then
+  echo "Usage:  listings <id or channel_listing_id>"
+  exit 1
+fi
+query 'select CONCAT("[",l.id,"]{",l.channel_id,":",l.channel_listing_id,"} ", l.Title) from listings l where id = '$1' or l.channel_listing_id LIKE "%'$1'%"'

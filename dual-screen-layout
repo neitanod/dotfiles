@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Wait for the GUI to be ready
+while [[ ! $(pgrep plasmashell) ]]; do sleep 1; done
+
+# Do what I want
+~/bin/dual-screen
