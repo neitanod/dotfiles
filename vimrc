@@ -748,9 +748,9 @@ command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 try
+Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'tomlion/vim-solidity'
 Plug 'beanworks/vim-phpfmt'
@@ -1394,7 +1394,16 @@ let g:airline_symbols.whitespace = 'Ξ'
 " Automatically open error list when errors are detected.
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 2
-let g:syntastic_quiet_messages = { "type": "style" }
+" let g:syntastic_quiet_messages = { "type": "style" }
+
+" Syntastic configuration for PHP
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_phpcs_exec = '~/bin/phpcs'
+let g:syntastic_php_phpcs_args = '--standard=psr2'
+let g:syntastic_php_phpmd_exec = '~/bin/phpmd'
+let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+
+
 
 
 " }}}

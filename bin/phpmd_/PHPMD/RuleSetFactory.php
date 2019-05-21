@@ -150,7 +150,8 @@ class RuleSetFactory
     {
         return array_merge(
             self::listRuleSetsInDirectory($this->location . '/rulesets/'),
-            self::listRuleSetsInDirectory(getcwd() . '/rulesets/')
+            self::listRuleSetsInDirectory(getcwd() . '/rulesets/'),
+            self::listRuleSetsInDirectory(__DIR__ . '/../data/PHPMD/resources/rulesets/')
         );
     }
 
@@ -178,6 +179,11 @@ class RuleSetFactory
         }
 
         $fileName = getcwd() . '/rulesets/' . $ruleSetOrFileName . '.xml';
+        if (file_exists($fileName) === true) {
+            return $fileName;
+        }
+
+        $fileName = __DIR__ . '/../data/PHPMD/resources/rulesets/'. $ruleSetOrFileName . '.xml';
         if (file_exists($fileName) === true) {
             return $fileName;
         }
