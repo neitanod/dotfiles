@@ -70,7 +70,17 @@ if [ -f ~/.fzf.zsh ]; then
 source ~/.fzf.zsh
 fi
 
-setxkbmap -option
+which setxkbmap | grep "not found" > /dev/null;
+returned=$?; if [[ $returned != 0 ]]; then
+    setxkbmap -option
+fi
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#
+
+# Nodejs
+VERSION=v10.16.0
+DISTRO=linux-x64
+export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+
 .  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null

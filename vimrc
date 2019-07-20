@@ -144,6 +144,8 @@ set guioptions-=r  "remove right-hand scroll bar
 " Make Vim able to edit crontab files again
 set backupskip=/tmp/*,/private/tmp/*"
 
+set autoread
+
 " }}}
 " --- Customizations ------------------------------------------------------- {{{
 
@@ -1397,20 +1399,23 @@ let g:syntastic_loc_list_height = 2
 " let g:syntastic_quiet_messages = { "type": "style" }
 
 " Syntastic configuration for PHP
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_php_phpcs_exec = '~/bin/phpcs'
+let g:syntastic_php_checkers = ['php', 'phpcs']
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_phpcs_exec = '~/bin/phpcbf'
 let g:syntastic_php_phpcs_args = '--standard=psr2'
 let g:syntastic_php_phpmd_exec = '~/bin/phpmd'
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
 
-
+if has("autocmd")
+    autocmd BufWritePost * checktime
+endif
 
 
 " }}}
 " -------- CtrlP   {{{
 noremap <C-[><C-p> :CtrlPMRU<CR>            " Map Control-[ then Control-p  => to CtrlP in MRU mode
 noremap <C-e> :CtrlP %:p:h<CR>              " Control-p in folder of current file instead of project
-noremap <C-y> :CtrlP %:p:h/..<CR>           " Control-p in folder PARENT of current file's 
+noremap <C-y> :CtrlP %:p:h/..<CR>           " Control-p in folder PARENT of current file's
 noremap <C-[><C-[> '0                       " Map Control-[ twice to reopen last file
 " noremap <leader>p <C-p><C-\>w               " I feel lucky -> Jump to Ctrl-P search for word under cursor
 " noremap <C-[><C-[><C-p> :CtrlPYankring<CR>  " Map Control-[ then Control-p  => to CtrlP in Buffer mode
@@ -1529,3 +1534,5 @@ autocmd VimEnter * source ~/dotfiles/vimloadedrc
 " }}}
 "
 "
+set exrc
+set secure

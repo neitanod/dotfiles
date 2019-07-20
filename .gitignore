@@ -1,3 +1,4 @@
 .vim_auto_sess
 vim/.vim
 oh-my-zsh/*
+hyper_plugins/*
