@@ -1,1 +1,2 @@
-xvkbd -text "\\S\\[Left]"
+#xvkbd -text "\\S\\[Left]"
+xvkbd -text "\\[Right]\\[Left]"
