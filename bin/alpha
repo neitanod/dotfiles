@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -t mayfly "cd /var/www/alpha.mapsentry.com/ && php artisan" $*

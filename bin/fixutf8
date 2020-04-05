@@ -33,6 +33,9 @@ if(empty($argv[1])) {
         fclose($file);
         if(!is_null($output)) fclose($output);
         unlink($filename);
-        rename($output_filename, $filename);
+        if(!empty($output_filename)) {
+            unlink($filename);
+            rename($output_filename, $filename);
+        }
     }
 }

@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -t mayfly "sudo mysql -e \"show processlist;\"" $*
