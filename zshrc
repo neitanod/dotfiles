@@ -54,7 +54,6 @@ function gd()
 {
  $HOME/bin/gd $*
   `cat $HOME/.gotopath`
-
 }
 
 function ga()
