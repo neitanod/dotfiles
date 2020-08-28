@@ -1,0 +1,1 @@
+ssh guybrush "DISPLAY=:0.0 x11vnc"

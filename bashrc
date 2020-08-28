@@ -116,7 +116,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH=~/go/bin:$PATH:~/bin:~/vimconfig/bin
+PATH=~/doc/prj/go/bin/go-1.14.4/bin:$PATH:~/bin:~/bin/guybrush:~/bin/mapsentry:~/vimconfig/bin
 export PATH
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
@@ -144,3 +144,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias publish="curl -F file=@- https://publish.ip1.cc"
+pactl unload-module module-device-manager > /dev/null 2>&1

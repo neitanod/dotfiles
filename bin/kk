@@ -1,0 +1,11 @@
+#!/bin/bash
+
+kpid=$(ps aux | grep "watch -n55 yy" | grep -v grep | awk '{print $2}')
+
+if [[ -z "$kpid" ]]
+then
+    echo "Process not found"
+    exit 1
+fi
+
+kill $kpid

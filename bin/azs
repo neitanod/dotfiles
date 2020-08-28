@@ -1,0 +1,1 @@
+ssh -t azs_instance 'cd /home/scraper/app/puppeteer; sudo zsh'

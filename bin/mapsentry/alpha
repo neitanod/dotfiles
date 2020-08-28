@@ -1,0 +1,1 @@
+ssh -t mayfly 'cd /var/www/alpha.mapsentry.com; sudo zsh'

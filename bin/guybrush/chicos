@@ -1,0 +1,1 @@
+ssh -t guybrush "sudo espeak -v spanish \"$*\""

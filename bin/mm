@@ -1,2 +1,13 @@
 #!/bin/bash
-xdotool mousemove $(( (RANDOM % 1000) )) $(( (RANDOM % 1000) )) click 1
+# xdotool mousemove $(( (RANDOM % 1000) )) $(( (RANDOM % 1000) )) click 1
+
+#    xdotool mousemove $(( (RANDOM % 1000) + 50 )) $(( (RANDOM % 1000) + 50 )) click 1
+
+# RND=$(( ( $RANDOM % 20 ) ))
+# echo $RND
+#
+# while [ $RND -gt 0 ];
+# do
+#     RND=$(( $RND-1 ))
+#     xdotool mousemove $(( (RANDOM % 1000) + 50 )) $(( (RANDOM % 1000) + 50 )) click 1
+# done

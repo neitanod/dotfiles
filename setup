@@ -10,6 +10,7 @@ mv ~/.tmux.conf  ~/olddotfiles/.tmux.conf
 mv ~/.gitconfig  ~/olddotfiles/.gitconfig
 mv ~/.githelpers ~/olddotfiles/.githelpers
 mv ~/.mailcap    ~/olddotfiles/.mailcap
+mv ~/.hotkeys    ~/olddotfiles/.hotkeys
 
 ln -s ~/dotfiles/bin         ~/bin
 ln -s ~/dotfiles/vim         ~/.vim
@@ -21,6 +22,7 @@ ln -s ~/dotfiles/tmux.conf   ~/.tmux.conf
 ln -s ~/dotfiles/gitconfig   ~/.gitconfig
 ln -s ~/dotfiles/githelpers  ~/.githelpers
 ln -s ~/dotfiles/mailcap     ~/.mailcap
+ln -s ~/dotfiles/hotkeys     ~/.hotkeys
 
 rm -rf ~/dotfiles/oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh

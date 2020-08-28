@@ -38,10 +38,10 @@ plugins=(git k)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export GOROOT=$HOME/doc/prj/go/go-1.10/
-export GOPATH=/home/sebas/doc/prj/go/go-1.10/
+export GOROOT=$HOME/doc/prj/go/bin/go-1.14.4/
+export GOPATH=/home/sebas/doc/prj/go/
 
-export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
+export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/bin/mapsentry:/home/sebas/bin/guybrush:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
 #export MAIL_DRIVER=log
 
@@ -81,8 +81,6 @@ fi
 VERSION=v10.16.0
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
-
-alias mayfly="ssh mayfly"
 
 .  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null
 

@@ -1,0 +1,1 @@
+mayfly sudo systemctl restart mapsentry-queue@production.service

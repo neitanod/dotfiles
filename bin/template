@@ -1,0 +1,46 @@
+#! env php
+<?php
+
+$optind = null;
+$opts = getopt('h', [], $optind);
+$pos_args = array_slice($argv, $optind);
+// var_dump($opts);   // options are here
+// var_dump($pos_args);   // postional arguments are here
+
+if( isset($opts['h']) ) {
+    echo <<<HERE
+template:
+    Transform input lines using a template string.
+
+    Use {@} to mark the places where input should be used in the template.
+
+Example:
+    ls | template "mv {@} tmpfile && mkdir {@} && mv tmpfile {@}/{@}" > move.sh
+
+HERE;
+    die();
+}
+
+if( !isset($pos_args[0]) ) {
+    $template = "{@}";
+} else {
+    $template = json_decode('["'.$pos_args[0].'"]');
+    $template = $template[0];
+}
+
+
+$f = fopen( 'php://stdin', 'r' );
+
+while ($line = fgets($f)) {
+    $line = nolf($line);
+    echo str_replace("{@}", $line, $template)."\n";
+}
+
+fclose($f);
+
+function nolf($line) {
+    if (substr( $line , -1 ) == "\n") {
+        return substr( $line, 0 , -1 );
+    }
+    return $line;
+}

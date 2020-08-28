@@ -1,0 +1,3 @@
+wmctrl -r :ACTIVE: -b remove,fullscreen
+wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+wmctrl -r :ACTIVE: -e 1201,1920,1260,1080,622

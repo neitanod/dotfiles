@@ -1,0 +1,1 @@
+ssh -t mayfly "cd /var/deploy; sudo ./deploy.go.mapsentry.com $*"

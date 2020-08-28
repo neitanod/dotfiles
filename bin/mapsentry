@@ -1,2 +1,0 @@
-#!/bin/bash
-ssh -t mayfly "cd /var/www/go.mapsentry.com/current && php artisan" $*

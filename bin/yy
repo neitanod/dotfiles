@@ -1,2 +1,36 @@
-#xvkbd -text "\\S\\[Left]"
-xvkbd -text "\\[Right]\\[Left]"
+#!/bin/bash
+
+RND=$(( ( $RANDOM % 70 ) ))
+echo $RND
+
+while [ $RND -gt 0 ];
+do
+    RND=$(( $RND-1 ))
+    xvkbd -text "\\[Shift_L]" 2> /dev/null ;
+    xvkbd -text "\\[Shift_R]" 2> /dev/null ;
+done
+
+RND=$(( ( $RANDOM % 2 ) ))
+echo $RND
+
+while [ $RND -gt 0 ];
+do
+    RND=$(( $RND-1 ))
+    xvkbd -text "\\[Shift_L]" 2> /dev/null ;
+done
+
+RND=$(( ( $RANDOM % 14 ) ))
+echo $RND
+
+while [ $RND -gt 0 ];
+do
+    RND=$(( $RND-1 ))
+    xdotool mousemove 200 7 click 3
+    xdotool mousemove 100 7 click 1
+done
+xvkbd -text "\\[Esc]" 2> /dev/null ;
+sleep 1
+xvkbd -text "\\[Esc]" 2> /dev/null ;
+xdotool mousemove $(( (RANDOM % 1000) + 50 )) $(( (RANDOM % 1000) + 50 ))
+
+xvkbd -text "\\C\\A\\[Right]" 2> /dev/null ;

@@ -1,0 +1,22 @@
+# to be run with sxhkd -c ~/.hotkeys
+
+ctrl + alt + Left
+    switch-workspace up
+ctrl + alt + Right
+    switch-workspace down
+ctrl + alt + 1
+    win1
+ctrl + alt + 2
+    win2
+ctrl + alt + 3
+    win3
+ctrl + alt + 4
+    win4
+ctrl + alt + 5
+    win5
+ctrl + alt + 8
+    winA
+ctrl + alt + 9
+    winB
+ctrl + alt + 0
+    winC

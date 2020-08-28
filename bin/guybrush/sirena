@@ -1,0 +1,1 @@
+ssh -t guybrush "sudo ffplay -nodisp -autoexit police-siren-sound.mp3"
