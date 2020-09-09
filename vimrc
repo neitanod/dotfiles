@@ -1,5 +1,7 @@
 " Source this buffer like this:    gg VGy    <Esc> :@"
 
+let g:python3_host_prog='/usr/bin/python'
+
 "5 Or source it from the Internet directly:
 "l[directlyl[pl]]
 "        :so http://jaku.com.ar/vimrc
@@ -801,7 +803,7 @@ Plug 'https://github.com/Julian/vim-textobj-variable-segment'
 Plug 'https://github.com/tmhedberg/matchit'
 Plug 'https://github.com/valloric/MatchTagAlways'
 Plug 'https://github.com/Shougo/neocomplete.vim'
-Plug 'https://github.com/Shougo/neoyank.vim'
+"Plug 'https://github.com/Shougo/neoyank.vim'
 Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/godlygeek/tabular'
 Plug 'https://github.com/tpope/vim-fugitive'
