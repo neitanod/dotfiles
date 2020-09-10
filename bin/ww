@@ -19,4 +19,4 @@
 PATH=$PATH:~/bin
 
 sleep 2
-watch -n55 yy
+watch -n10 yy

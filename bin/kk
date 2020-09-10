@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kpid=$(ps aux | grep "watch -n55 yy" | grep -v grep | awk '{print $2}')
+kpid=$(ps aux | grep "watch -n10 yy" | grep -v grep | awk '{print $2}')
 
 if [[ -z "$kpid" ]]
 then
