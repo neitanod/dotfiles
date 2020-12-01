@@ -38,6 +38,7 @@ let g:DisableAutoPHPFolding = 1  " PIV plugin
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
+set cursorline
 
 set complete+=k
 set dictionary-=~/.vim/dictionaries/user.txt
@@ -167,7 +168,7 @@ augroup END
 """"""""""""""""""""""""""""""
 " => Save when losing focus
 """"""""""""""""""""""""""""""
-au FocusLost * :silent! wall
+" au FocusLost * :silent! wall
 
 """"""""""""""""""""""""""""""
 " => Statusline
@@ -352,6 +353,9 @@ set hidden
 
 " Only search for matching parentheses for 5 milliseconds.  Abort if nothing found.
 let g:matchparen_insert_timeout=5
+
+hi MatchParenAlways ctermfg=236 ctermbg=236 cterm=NONE gui=NONE guifg=#353535 guibg=#353535 guisp=#353535
+let g:matchparenalways_hl_group="MatchParenAlways"
 
 " Teclas de funcion
 inoremap <F7> <Esc>:vertical res +1<Enter>
@@ -756,10 +760,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tomlion/vim-solidity'
-Plug 'beanworks/vim-phpfmt'
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'https://github.com/junegunn/vim-easy-align'
+"Plug 'tomlion/vim-solidity'
+"Plug 'beanworks/vim-phpfmt'
+"Plug 'arnaud-lb/vim-php-namespace'
+"Plug 'https://github.com/junegunn/vim-easy-align'
 "Plug 'https://github.com/tpope/vim-haystack'
 "Plug 'https://github.com/kien/ctrlp.vim'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
@@ -772,7 +776,7 @@ Plug 'https://github.com/bling/vim-airline'
 
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll'
 Plug 'https://github.com/rking/ag.vim'
-Plug 'https://github.com/jiangmiao/auto-pairs'
+"Plug 'https://github.com/jiangmiao/auto-pairs'
 "Plug 'https://github.com/vim-scripts/autoproto.vim'
 Plug 'https://github.com/neitanod/autoproto.vim'
 "Plug 'https://github.com/vim-scripts/autosession.vim' " replaced with Tim Pope's Obsession
@@ -781,15 +785,15 @@ Plug 'https://github.com/rhysd/clever-f.vim'
 " Plug 'https://github.com/sgur/ctrlp-extensions.vim'
 Plug 'https://github.com/neitanod/vim-sade'
 
-Plug 'https://github.com/nathanaelkane/vim-indent-guides'
+"Plug 'https://github.com/nathanaelkane/vim-indent-guides'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/luochen1990/rainbow'
 Plug 'https://github.com/neitanod/vim-clevertab'
-Plug 'https://github.com/SirVer/ultisnips'
+"Plug 'https://github.com/SirVer/ultisnips'
 Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-unimpaired'
-Plug 'https://github.com/soh335/vim-symfony'
+" Plug 'https://github.com/soh335/vim-symfony'
 Plug 'https://github.com/Shougo/unite.vim'
 Plug 'https://github.com/h1mesuke/unite-outline'
 Plug 'https://github.com/kana/vim-textobj-user'
@@ -804,7 +808,7 @@ Plug 'https://github.com/tmhedberg/matchit'
 Plug 'https://github.com/valloric/MatchTagAlways'
 Plug 'https://github.com/Shougo/neocomplete.vim'
 "Plug 'https://github.com/Shougo/neoyank.vim'
-Plug 'https://github.com/scrooloose/syntastic'
+"Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/godlygeek/tabular'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/airblade/vim-gitgutter'
@@ -832,12 +836,11 @@ Plug 'https://github.com/vim-scripts/diffchar.vim'
 Plug 'https://github.com/gcmt/taboo.vim'
 Plug 'https://github.com/szw/vim-ctrlspace'
 "Plug 'https://github.com/tomaszj/lexplore.vim'
-Plug 'https://github.com/atweiden/vim-dragvisuals'
-Plug 'https://github.com/AndrewRadev/switch.vim'
+"Plug 'https://github.com/atweiden/vim-dragvisuals'
 Plug 'https://github.com/ktonga/vim-follow-my-lead'
 " Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
-Plug 'https://github.com/evidens/vim-twig'
-Plug 'https://github.com/embear/vim-foldsearch'
+"Plug 'https://github.com/evidens/vim-twig'
+"Plug 'https://github.com/embear/vim-foldsearch'
 "browser
 "calendar.vim
 
@@ -1448,8 +1451,11 @@ endfunction
 " let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 " }}}
-" -------- ControlSpace   {{{
+" -------- MatchParenAlways   {{{
+" Highlighst a gray column on indentation level
+hi MatchParenAlways ctermfg=236 ctermbg=236 cterm=NONE gui=NONE guifg=#353535 guibg=#353535 guisp=#353535
 " }}}
+" -------- ControlSpace   {{{
 nnoremap <leader><leader> :CtrlSpace<CR>
 nnoremap <leader>j :CtrlSpaceGoDown<CR>
 nnoremap <leader>k :CtrlSpaceGoUp<CR>

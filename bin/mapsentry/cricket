@@ -1,0 +1,1 @@
+ssh -t cricket 'cd /var/www/alpha.sku.io; sudo zsh'
