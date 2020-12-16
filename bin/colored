@@ -1,0 +1,5 @@
+#!/bin/bash
+script -qefc "$(printf "%q " "$@")" /dev/null | cat > /tmp/colored && cat /tmp/colored
+stty sane
+rm /tmp/colored
+# socat - EXEC:\'"$*"\',pty,setsid,ctty
