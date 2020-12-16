@@ -85,3 +85,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 .  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null
 
 alias publish="curl -F file=@- https://publish.ip1.cc"
+LIBSTDERRED=/home/sebas/apps/stderred/build/libstderred.so
+if [ -f $LIBSTDERRED ]; then
+    export LD_PRELOAD="$LIBSTDERRED${LD_PRELOAD:+:$LD_PRELOAD}"
+fi
