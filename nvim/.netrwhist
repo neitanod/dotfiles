@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/sebas/doc/prj/map/go.mapsentry.com/app/Model'
+let g:netrw_dirhist_8='/home/sebas/doc/prj/map/go.mapsentry.com/app'
+let g:netrw_dirhist_7='/home/sebas/doc/prj/map/go.mapsentry.com/app/Console'
+let g:netrw_dirhist_6='/home/sebas/doc/prj/map/go.mapsentry.com/app'
+let g:netrw_dirhist_5='/home/sebas/doc/prj/map/go.mapsentry.com/app/Business'
+let g:netrw_dirhist_4='/home/sebas/doc/prj/map/go.mapsentry.com/app'
+let g:netrw_dirhist_3='/home/sebas/doc/prj/map/go.mapsentry.com/app/Business'
+let g:netrw_dirhist_2='/home/sebas/doc/prj/map/go.mapsentry.com/app'
+let g:netrw_dirhist_1='/home/sebas/doc/prj/map/go.mapsentry.com/app/Business'
+let g:netrw_dirhist_0='/home/sebas/doc/prj/map/go.mapsentry.com/app'

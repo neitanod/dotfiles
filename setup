@@ -11,6 +11,7 @@ mv ~/.gitconfig  ~/olddotfiles/.gitconfig
 mv ~/.githelpers ~/olddotfiles/.githelpers
 mv ~/.mailcap    ~/olddotfiles/.mailcap
 mv ~/.hotkeys    ~/olddotfiles/.hotkeys
+mv ~/.config/nvim  ~/olddotfiles/.config_nvim
 
 ln -s ~/dotfiles/bin         ~/bin
 ln -s ~/dotfiles/vim         ~/.vim
@@ -23,8 +24,11 @@ ln -s ~/dotfiles/gitconfig   ~/.gitconfig
 ln -s ~/dotfiles/githelpers  ~/.githelpers
 ln -s ~/dotfiles/mailcap     ~/.mailcap
 ln -s ~/dotfiles/hotkeys     ~/.hotkeys
+mkdir ~/.config
+ln -s ~/dotfiles/nvim        ~/.config/
 
 rm -rf ~/dotfiles/oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh
 rm -rf ~/dotfiles/oh-my-zsh/custom
 ln -s ~/dotfiles/oh-my-custom/custom ~/dotfiles/oh-my-zsh
+ln -s /home/sebas/dotfiles/nvim /home/sebas/.config/

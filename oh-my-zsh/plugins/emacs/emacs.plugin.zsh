@@ -16,7 +16,7 @@ if "$ZSH/tools/require_tool.sh" emacsclient 24 2>/dev/null ; then
     # set EDITOR if not already defined.
     export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
 
-    alias emacs="$EMACS_PLUGIN_LAUNCHER -t"
+    alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
     alias e=emacs
     # open terminal emacsclient
     alias te="$EMACS_PLUGIN_LAUNCHER -nw"
@@ -26,6 +26,16 @@ if "$ZSH/tools/require_tool.sh" emacsclient 24 2>/dev/null ; then
     # create a new X frame
     alias eframe='emacsclient --alternate-editor "" --create-frame'
 
+    # Emacs ANSI Term tracking
+    if [[ -n "$INSIDE_EMACS" ]]; then
+        chpwd_emacs() { print -P "\033AnSiTc %d"; }
+        print -P "\033AnSiTc %d"    # Track current working directory
+        print -P "\033AnSiTu %n"    # Track username        
+
+        # add chpwd hook
+        autoload -Uz add-zsh-hook
+        add-zsh-hook chpwd chpwd_emacs
+    fi    
 
     # Write to standard output the path to the file
     # opened in the current buffer.

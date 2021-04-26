@@ -5,14 +5,14 @@ function _start_agent() {
 	zstyle -s :omz:plugins:ssh-agent lifetime lifetime
 
 	# start ssh-agent and setup environment
-	echo starting ssh-agent...
+	echo Starting ssh-agent...
 	ssh-agent -s ${lifetime:+-t} ${lifetime} | sed 's/^echo/#echo/' >! $_ssh_env_cache
 	chmod 600 $_ssh_env_cache
 	. $_ssh_env_cache > /dev/null
 }
 
 function _add_identities() {
-	local id line sig
+	local id line sig lines
 	local -a identities loaded_sigs loaded_ids not_loaded
 	zstyle -a :omz:plugins:ssh-agent identities identities
 
@@ -32,10 +32,12 @@ function _add_identities() {
 	fi
 
 	# get list of loaded identities' signatures and filenames
-	for line in ${(f)"$(ssh-add -l)"}; do
-		loaded_sigs+=${${(z)line}[2]}
-		loaded_ids+=${${(z)line}[3]}
-	done
+	if lines=$(ssh-add -l); then
+		for line in ${(f)lines}; do
+			loaded_sigs+=${${(z)line}[2]}
+			loaded_ids+=${${(z)line}[3]}
+		done
+	fi
 
 	# add identities if not already loaded
 	for id in $identities; do
@@ -46,7 +48,9 @@ function _add_identities() {
 		fi
 	done
 
-	[[ -n "$not_loaded" ]] && ssh-add ${^not_loaded}
+	local args
+	zstyle -a :omz:plugins:ssh-agent ssh-add-args args
+	[[ -n "$not_loaded" ]] && ssh-add "${args[@]}" ${^not_loaded}
 }
 
 # Get the filename to store/lookup the environment from
@@ -57,11 +61,11 @@ zstyle -b :omz:plugins:ssh-agent agent-forwarding _agent_forwarding
 
 if [[ $_agent_forwarding == "yes" && -n "$SSH_AUTH_SOCK" ]]; then
 	# Add a nifty symlink for screen/tmux if agent forwarding
-	[[ -L $SSH_AUTH_SOCK ]] || ln -sf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USER-screen
+	[[ -L $SSH_AUTH_SOCK ]] || ln -sf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USERNAME-screen
 elif [[ -f "$_ssh_env_cache" ]]; then
 	# Source SSH settings, if applicable
 	. $_ssh_env_cache > /dev/null
-	if [[ $USER == "root" ]]; then
+	if [[ $USERNAME == "root" ]]; then
 		FILTER="ax"
 	else
 		FILTER="x"
