@@ -38,7 +38,7 @@ plugins=(git k zsh-nvm)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export GOROOT=$HOME/doc/prj/go/bin/go-1.14.4/
+export GOROOT=$HOME/doc/prj/go/bin/go-1.15.6/
 export GOPATH=/home/sebas/doc/prj/go/
 
 export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/bin/mapsentry:/home/sebas/bin/guybrush:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
@@ -85,7 +85,12 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 .  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null
 
 alias publish="curl -F file=@- https://publish.ip1.cc"
-LIBSTDERRED=/home/sebas/apps/stderred/build/libstderred.so
-if [ -f $LIBSTDERRED ]; then
-    export LD_PRELOAD="$LIBSTDERRED${LD_PRELOAD:+:$LD_PRELOAD}"
-fi
+
+# disable stderr in red color for now (didn't like it)
+# LIBSTDERRED=~/apps/stderred/build/libstderred.so
+# if [ -f $LIBSTDERRED ]; then
+#     export LD_PRELOAD="$LIBSTDERRED${LD_PRELOAD:+:$LD_PRELOAD}"
+# fi
+
+# OPAM configuration
+. /home/sebas/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

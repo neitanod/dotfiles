@@ -116,7 +116,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH=~/doc/prj/go/bin/go-1.14.4/bin:$PATH:~/bin:~/bin/guybrush:~/bin/mapsentry:~/vimconfig/bin
+PATH=~/doc/prj/go/bin/go-1.15.6/bin:$PATH:~/bin:~/bin/guybrush:~/bin/mapsentry:~/vimconfig/bin
 export PATH
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'

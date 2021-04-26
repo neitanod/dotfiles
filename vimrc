@@ -39,6 +39,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
 set cursorline
+set cursorcolumn
 
 set complete+=k
 set dictionary-=~/.vim/dictionaries/user.txt
@@ -354,7 +355,7 @@ set hidden
 " Only search for matching parentheses for 5 milliseconds.  Abort if nothing found.
 let g:matchparen_insert_timeout=5
 
-hi MatchParenAlways ctermfg=236 ctermbg=236 cterm=NONE gui=NONE guifg=#353535 guibg=#353535 guisp=#353535
+hi MatchParenAlways ctermfg=256 ctermbg=256 cterm=NONE gui=NONE guifg=#FFFFFF guibg=#353535 guisp=#353535
 let g:matchparenalways_hl_group="MatchParenAlways"
 
 " Teclas de funcion
@@ -756,6 +757,7 @@ command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 try
+    Plug 'arnaud-lb/vim-php-namespace'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'posva/vim-vue'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -815,14 +817,14 @@ try
     Plug 'https://github.com/ntpeters/vim-better-whitespace'
     Plug 'https://github.com/kana/vim-operator-user'
 
-    Plug 'https://github.com/airblade/vim-rooter'
-    Plug 'https://github.com/honza/vim-snippets'
-    Plug 'https://github.com/tpope/vim-surround'
+    " Plug 'https://github.com/airblade/vim-rooter'
+    " Plug 'https://github.com/honza/vim-snippets'
+    " Plug 'https://github.com/tpope/vim-surround'
     Plug 'https://github.com/tomtom/tcomment_vim'
     Plug 'https://github.com/wellle/targets.vim'
     Plug 'https://github.com/vim-scripts/LargeFile'
     Plug 'https://github.com/ton/vim-bufsurf'
-    Plug 'https://github.com/justinmk/vim-matchparenalways'
+    " Plug 'https://github.com/justinmk/vim-matchparenalways' // ugly colors
     Plug 'https://github.com/wincent/Command-T'
     Plug 'https://github.com/vim-scripts/Conque-Shell'
     Plug 'https://github.com/neitanod/vim-ondemandhighlight'
@@ -837,38 +839,41 @@ try
     Plug 'https://github.com/szw/vim-ctrlspace'
     "Plug 'https://github.com/tomaszj/lexplore.vim'
     "Plug 'https://github.com/atweiden/vim-dragvisuals'
-    Plug 'https://github.com/ktonga/vim-follow-my-lead'
-    " Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
+    "Plug 'https://github.com/ktonga/vim-follow-my-lead'
+    "Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
     "Plug 'https://github.com/evidens/vim-twig'
     "Plug 'https://github.com/embear/vim-foldsearch'
-    "browser
-    "calendar.vim
+    " "browser
+    " "calendar.vim
+    "
+    "
+    " "dragvisuals
+    " "git-file.vim
+    " "hilinks
+    " "listmaps
+    " "lusty
+    " "paster
+    " "PIV
+    " "quickfix-reflector.vim
+    " "ScrollColors
+    " "solarized
+    " "tlib_vim
+    " "undotree
+    " "vim-addon-mw-utils
+    " "vim-easymotion
+    " "vim-exchange
+    " "vim-expand-region
+    " "vim-gtfo
+    " "vim-interestingwords-orig
+    " "vim-l9
+    " "vimproc.vim
+    " "vim-sparkup
+    " "vim-speeddating
+    " "vim-tbone
+    " "vimux
+    "
 
-
-    "dragvisuals
-    "git-file.vim
-    "hilinks
-    "listmaps
-    "lusty
-    "paster
-    "PIV
-    "quickfix-reflector.vim
-    "ScrollColors
-    "solarized
-    "tlib_vim
-    "undotree
-    "vim-addon-mw-utils
-    "vim-easymotion
-    "vim-exchange
-    "vim-expand-region
-    "vim-gtfo
-    "vim-interestingwords-orig
-    "vim-l9
-    "vimproc.vim
-    "vim-sparkup
-    "vim-speeddating
-    "vim-tbone
-    "vimux
+    Plug 'lambdalisue/fern.vim'  " sidebar file explorer
 catch
 
 endtry
@@ -1076,10 +1081,10 @@ highlight NonText       guifg=#707070 ctermfg=8
 highlight SpecialKey    guifg=#707070 ctermfg=8
 
 "Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+nnoremap <leader>q :e ~/buffer<cr>
 au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ===========================================
 
-map <leader>pp :setlocal paste!<cr>
+nnoremap <leader>pp :setlocal paste!<cr>
 
 " Zoom and Unzoom functions for GUI version of Vim
 let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
@@ -1274,7 +1279,7 @@ try
 
     call sade#Func("Gh",'SadeHighlight')
     call sade#Func("GI",'Inspect')
-    call sade#Func("Gt",'TranslateThis')
+    "call sade#Func("Gt",'TranslateThis')
 catch
 
 endtry
@@ -1306,6 +1311,13 @@ nnoremap L <ESC>m`:Php<ENTER>``
 
 " }}}
 " --- Plugins config ------------------------------------------------------- {{{
+" -------- Vim-PHP-Namespace {{{
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php nnoremap <Leader>u :call PhpInsertUse()<CR>
+" }}}
 " -------- Unite       {{{
 
 let g:phpfmt_standard = 'PEAR'
@@ -1327,13 +1339,13 @@ nnoremap <leader>e :<C-u>UniteWithBufferDir -start-insert -auto-resize file<CR>
 " nnoremap <leader>f :<C-u>Unite -start-insert -auto-resize file_rec/git<CR>
 nnoremap <leader>q <ESC>mzgg=G<CR>'z
 
-nmap <leader>oc :CtrlP<CR>app/controllers/
-nmap <leader>os :CtrlP<CR>schemayml<CR>
-nmap <leader>om :CtrlP<CR>app/model/
-nmap <leader>ov :CtrlP<CR>app/views/
-nmap <leader>oh :CtrlP<CR>app/helpers/
-nmap <leader>ow :CtrlP<CR>web/
-nmap <leader>op :CtrlP<CR>web/panel_files/
+nnoremap <leader>oc :CtrlP<CR>app/controllers/
+nnoremap <leader>os :CtrlP<CR>schemayml<CR>
+nnoremap <leader>om :CtrlP<CR>app/model/
+nnoremap <leader>ov :CtrlP<CR>app/views/
+nnoremap <leader>oh :CtrlP<CR>app/helpers/
+nnoremap <leader>ow :CtrlP<CR>web/
+nnoremap <leader>op :CtrlP<CR>web/panel_files/
 
 " }}}
 " -------- GitGutter   {{{
@@ -1342,7 +1354,7 @@ let g:gitgutter_eager = 0
 " }}}
 " -------- Region Expand   {{{
 " Leader-w  = wider region
-"nmap <leader>w v
+"nnoremap <leader>w v
 vmap v <Plug>(expand_region_expand)
 " Leader-n  = narrower region
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -1437,7 +1449,7 @@ function! LazyP()
     let g:ctrlp_default_input = ''
 endfunction
 command! LazyP call LazyP()
-nnoremap <C-L> :LazyP<CR><CR> 
+" nnoremap <C-L> :LazyP<CR><CR>
 
 
 " Use Tim Pope's improved match algorithm from "haystack.vim" plugin
@@ -1557,14 +1569,14 @@ autocmd VimEnter * source ~/dotfiles/vimloadedrc
 " Open controllers, models, migrations, etc, by name via CtrlP: {{{
 
 " -                                                    Mnemonics:
-nmap <leader>oc :CtrlP<CR>app/Http/Controllers/|     " Open Controller
-nmap <leader>om :CtrlP<CR>app/Model/|                " Open Model
-nmap <leader>od :CtrlP<CR>database/migrations/|      " Open Database
-nmap <leader>or :CtrlP<CR>routes/|                   " Open Route
-nmap <leader>ov :CtrlP<CR>resources/views/|          " Open View (view file from Laravel)
-nmap <leader>oh :CtrlP<CR>app/Helpers/|              " Open Helper
-nmap <leader>ofv :CtrlP<CR>frontend/src/views/|      " Open Fronted Views (Vue's view file)
-nmap <leader>ofc :CtrlP<CR>frontend/src/components/| " Open Fronted Component
+nnoremap <leader>oc :CtrlP<CR>app/Http/Controllers/|     " Open Controller
+nnoremap <leader>om :CtrlP<CR>app/Model/|                " Open Model
+nnoremap <leader>od :CtrlP<CR>database/migrations/|      " Open Database
+nnoremap <leader>or :CtrlP<CR>routes/|                   " Open Route
+nnoremap <leader>ov :CtrlP<CR>resources/views/|          " Open View (view file from Laravel)
+nnoremap <leader>oh :CtrlP<CR>app/Helpers/|              " Open Helper
+nnoremap <leader>ofv :CtrlP<CR>frontend/src/views/|      " Open Fronted Views (Vue's view file)
+nnoremap <leader>ofc :CtrlP<CR>frontend/src/components/| " Open Fronted Component
 "
 " }}}
 
@@ -1573,16 +1585,20 @@ nmap <leader>ofc :CtrlP<CR>frontend/src/components/| " Open Fronted Component
 " Browse controllers, models, migrations, etc, via Netrw: {{{
 
 " -                                                  Mnemonics:
-nmap <leader>ec :Ex app/Http/Controllers<CR>|      " Explore Controller
-nmap <leader>em :Ex app/Model/<CR>|                " Explore Model
-nmap <leader>ed :Ex database/migrations/<CR>|      " Explore Database
-nmap <leader>er :Ex routes/<CR>|                   " Explore Routes
-nmap <leader>ev :Ex resources/views/<CR>|          " Explore View (view file from Laravel)
-nmap <leader>eh :Ex app/Helpers/<CR>|              " Explore Helper
-nmap <leader>efv :Ex frontend/src/views/<CR>|      " Explore Fronted Views (Vue's view file)
-nmap <leader>efc :Ex frontend/src/components/<CR>| " Explore Fronted Component
+nnoremap <leader>ec :Ex app/Http/Controllers<CR>|      " Explore Controller
+nnoremap <leader>em :Ex app/Model/<CR>|                " Explore Model
+nnoremap <leader>ed :Ex database/migrations/<CR>|      " Explore Database
+nnoremap <leader>er :Ex routes/<CR>|                   " Explore Routes
+nnoremap <leader>ev :Ex resources/views/<CR>|          " Explore View (view file from Laravel)
+nnoremap <leader>eh :Ex app/Helpers/<CR>|              " Explore Helper
+nnoremap <leader>efv :Ex frontend/src/views/<CR>|      " Explore Fronted Views (Vue's view file)
+nnoremap <leader>efc :Ex frontend/src/components/<CR>| " Explore Fronted Component
 
 " }}}
+
+
+" Run PHP Code Style Fixer
+nnoremap <leader>f :silent w<CR>:!~/.composer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix %<CR>:e!<CR>
 
 " }}}
 
@@ -1595,3 +1611,93 @@ nmap <leader>efc :Ex frontend/src/components/<CR>| " Explore Fronted Component
 " }}}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"here is a more exotic version of my original Kwbd script
+"delete the buffer; keep windows; create a scratch buffer if no buffers left
+function! s:Kwbd(kwbdStage)
+  if(a:kwbdStage == 1)
+    if(&modified)
+      let answer = confirm("This buffer has been modified.  Are you sure you want to delete it?", "&Yes\n&No", 2)
+      if(answer != 1)
+        return
+      endif
+    endif
+    if(!buflisted(winbufnr(0)))
+      bd!
+      return
+    endif
+    let s:kwbdBufNum = bufnr("%")
+    let s:kwbdWinNum = winnr()
+    windo call s:Kwbd(2)
+    execute s:kwbdWinNum . 'wincmd w'
+    let s:buflistedLeft = 0
+    let s:bufFinalJump = 0
+    let l:nBufs = bufnr("$")
+    let l:i = 1
+    while(l:i <= l:nBufs)
+      if(l:i != s:kwbdBufNum)
+        if(buflisted(l:i))
+          let s:buflistedLeft = s:buflistedLeft + 1
+        else
+          if(bufexists(l:i) && !strlen(bufname(l:i)) && !s:bufFinalJump)
+            let s:bufFinalJump = l:i
+          endif
+        endif
+      endif
+      let l:i = l:i + 1
+    endwhile
+    if(!s:buflistedLeft)
+      if(s:bufFinalJump)
+        windo if(buflisted(winbufnr(0))) | execute "b! " . s:bufFinalJump | endif
+      else
+        enew
+        let l:newBuf = bufnr("%")
+        windo if(buflisted(winbufnr(0))) | execute "b! " . l:newBuf | endif
+      endif
+      execute s:kwbdWinNum . 'wincmd w'
+    endif
+    if(buflisted(s:kwbdBufNum) || s:kwbdBufNum == bufnr("%"))
+      execute "bd! " . s:kwbdBufNum
+    endif
+    if(!s:buflistedLeft)
+      set buflisted
+      set bufhidden=delete
+      set buftype=
+      setlocal noswapfile
+    endif
+  else
+    if(bufnr("%") == s:kwbdBufNum)
+      let prevbufvar = bufnr("#")
+      if(prevbufvar > 0 && buflisted(prevbufvar) && prevbufvar != s:kwbdBufNum)
+        b #
+      else
+        bn
+      endif
+    endif
+  endif
+endfunction
+
+command! Kwbd call s:Kwbd(1)
+nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
+
+" Create a mapping (e.g. in your .vimrc) like this:
+nnoremap <leader>c <Plug>Kwbd

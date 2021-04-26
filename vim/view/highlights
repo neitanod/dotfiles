@@ -12,3 +12,13 @@ highlight highlight_9e7b9647 ctermbg=82 ctermfg=0
 call matchadd('highlight_9e7b9647', '\<this\>')
 highlight highlight_d91a3cfe ctermfg=38
 call matchadd('highlight_d91a3cfe', ');')
+highlight highlight_e5f3acb9 ctermbg=223 ctermfg=0
+call matchadd('highlight_e5f3acb9', '\<paramsBuilder\>')
+highlight highlight_673064e8 ctermbg=226 ctermfg=0
+call matchadd('highlight_673064e8', '\<console\>')
+highlight highlight_878e08b0 ctermfg=119
+call matchadd('highlight_878e08b0', ')')
+highlight highlight_545799cd ctermfg=26
+call matchadd('highlight_545799cd', '\<parse_url\>')
+highlight highlight_20cca97b ctermfg=180
+call matchadd('highlight_20cca97b', '(":"):')
