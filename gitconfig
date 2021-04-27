@@ -48,6 +48,7 @@
 	undo-commit = reset --soft HEAD^
 	up = "!git remote update -p; git merge --ff-only @{u}"
   edit = "!vim `git ls` -p"
+  edit-latest = "!vim -p `git diff --name-only HEAD~1..HEAD`"
 
 [diff]
   tool = meld
