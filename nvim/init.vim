@@ -341,11 +341,11 @@ endfor
 nnoremap <C-j> ddp
 nnoremap <C-k> ddkkp
 
-" ALT-Up, ALT-Down -> Navigate buffers
-noremap <M-Up> <Esc>:bprevious<Enter>
-noremap <M-Down> <Esc>:bnext<Enter>
-noremap gB <Esc>:BufSurfBack<Enter>
-noremap gb <Esc>:BufSurfForward<Enter>
+" Cycle through buffers:
+nnoremap gb :bnext<CR>
+nnoremap gB :bprevious<CR>
+nnoremap gl :bnext<CR>
+nnoremap gh :bprevious<CR>
 
 
 " Function for abbreviating commands without messing with the whole command
@@ -559,14 +559,6 @@ let g:CSApprox_verbose_level = 0
 
 
 """"""""""""""""""""""""""""""
-" => LustyExplorer mappings
-""""""""""""""""""""""""""""""
-nnoremap ,f :LustyFilesystemExplorerFromHere<cr>
-nnoremap ,b :LustyBufferExplorer<cr>
-nnoremap ,g :LustyBufferGrep<cr>
-
-
-""""""""""""""""""""""""""""""
 " => lhs comments
 """"""""""""""""""""""""""""""
 vnoremap z# :s/^/#/<CR>:nohlsearch<CR>
@@ -657,32 +649,6 @@ let g:ctrlp_max_height = 35
 
 if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-if !exists("vimrc_autocommands_completion_loaded")
-  let vimrc_autocommands_completion_loaded = 1
-  if has("autocmd")
-    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType c setlocal omnifunc=ccomplete#Complete
-
-    "let g:SuperTabClosePreviewOnPopupClose = 1
-    " Estas lineas hacen lo mismo que la anterior cuando no esta instalado SuperTab:
-    " autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-    " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-    " Resalta todas las ocurrencias de la palabra que está bajo el cursor en modo normal.
-    " autocmd CursorMoved * exe printf('match MatchCurrent /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
-    "hi MatchCurrent  ctermfg=229    cterm=underline
-    hi MatchCurrent  ctermfg=214    cterm=underline
-    "hi MatchCurrent  guifg=#E6DB74  gui=underline
-    hi MatchCurrent  guifg=#FF2820  gui=underline
-  endif
 endif
 
 "Functions
@@ -1344,9 +1310,12 @@ nnoremap <leader>so :<C-u>Unite -start-insert -auto-resize outline<CR><ESC>
 "nnoremap <leader>e :<C-u>UniteWithBufferDir -start-insert -auto-resize file<CR>
 "nnoremap <leader>f :<C-u>Unite -start-insert -auto-resize file_rec/git<CR>
 
+" }}}
 
 
-" Open Fern file explorer on a drawer {{{
+" --- Fern             {{{
+
+" Open Fern file explorer on a drawer
 
 nmap <leader>f :exec(':Fern . -reveal=' . expand('%') . ' -drawer')<CR><C-w>=
 
@@ -1391,19 +1360,21 @@ augroup FernGroup
   autocmd FileType fern call FernInit()
 augroup END
 
-    " -------- fern-git-status {{{
+" }}}
+
+" -------- fern-git-status {{{
     " Options for plugin fern-git-status
     let g:fern_git_status#disable_ignored    = 1
     let g:fern_git_status#disable_untracked  = 1
     let g:fern_git_status#disable_submodules = 1
 
     let g:fern#renderer = "nerdfont"
-    " }}}
-
-
-    let g:startify_files_number = 15
 " }}}
 
+
+" --- Startify         {{{
+    let g:startify_files_number = 15
+" }}}
 
 
 
@@ -1476,39 +1447,45 @@ vmap  <expr>  D        DVB_Duplicate()
 let g:DVB_TrimWS = 1
 " }}}
 " -------- Powerline and Airline   {{{
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_dividers_override = ['', '', '', '']
-"let g:Powerline_dividers_override = ['', '', '', '']
-"let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
-"let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
-"let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
-"let g:airline#extensions#tabline#enabled = 1
+
+" let g:Powerline_symbols = 'fancy'
+" let g:Powerline_dividers_override = ['', '', '', '']
+" let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
+" let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
+" let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
+
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 "let g:airline_detect_whitespace = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_exclude_preview = 1 "needed by CtrlSpace plugin
-
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
 " unicode symbols
-"let g:airline_left_sep = '»'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_left_sep = '»'
 "let g:airline_left_sep = '▶'
-let g:airline_left_sep = ''
+let g:airline_left_sep = ''
+"let g:airline_left_sep = ''
 "let g:airline_right_sep = '«'
 "let g:airline_right_sep = '◀'
-let g:airline_right_sep = ''
+let g:airline_right_sep = ''
+"let g:airline_right_sep = ''
 let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.linenr = ''
+"let g:airline_symbols.maxlinenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.branch = ''
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
@@ -1571,10 +1548,12 @@ endfunction
 
 " }}}
 " -------- ControlSpace   {{{
-" }}}
 nnoremap <leader><leader> :CtrlSpace<CR>
-nnoremap <leader>j :CtrlSpaceGoDown<CR>
-nnoremap <leader>k :CtrlSpaceGoUp<CR>
+nnoremap <leader>h :CtrlSpaceGoUp<CR>
+nnoremap <leader>j :CtrlSpaceGoUp<CR>
+nnoremap <leader>k :CtrlSpaceGoDown<CR>
+nnoremap <leader>l :CtrlSpaceGoDown<CR>
+" }}}
 
 " let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 
@@ -1585,71 +1564,31 @@ nnoremap <leader>k :CtrlSpaceGoUp<CR>
 
 let g:gtfo#terminals = { 'mac' : 'iterm', 'unix' : 'konsole' }
 " }}}
-" -------- NeoComplete   {{{
-let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#enable_at_startup = 0
-"let g:neocomplete#enable_auto_select = 1
 
-if !exists('g:neocomplete#sources')
-  let g:neocomplete#sources = {}
-endif
-let g:neocomplete#sources._ = ['buffer', 'dictionary']
-let g:neocomplete#sources.php = ['buffer', 'dictionary']
 
-let g:neocomplete#sources#dictionary#dictionaries = {
-\   'default' : '',
-\   'php' : $HOME.'/php.dict',
-\   'html' : $HOME.'/php.dict'
-\ }
+" -------- Conditional TAB key to use alongside CoC {{{
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black    ctermbg=black
-autocmd VimEnter,Colorscheme,BufEnter * :hi IndentGuidesOdd  guibg=darkgrey ctermbg=darkgrey
-autocmd VimEnter,Colorscheme,BufEnter * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+inoremap <silent><tab> <c-r>=ConditionalTab()<cr>
+inoremap <silent><s-tab> <c-r>=ConditionalShiftTab()<cr>
 
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"	let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-"if !exists('g:neocomplete#sources#omni#functions')
-"  let g:neocomplete#sources#omni#functions = {}
-"endif
-"if !exists('g:neocomplete#force_omni_input_patterns')
-"	let g:neocomplete#force_omni_input_patterns = {}
-"endif
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
+function! ConditionalTab()
+  if pumvisible() == 0
+    return "\<tab>"
+  else
+    return "\<down>"
+  endif
+endfunction
 
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-"PHP Input Patterns
-"let g:neocomplete#sources#omni#input_patterns.php =
-"			\'\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+function! ConditionalShiftTab()
+  if pumvisible() == 0
+    return "\<s-tab>"
+  else
+    return "\<up>"
+  endif
+endfunction
 
 " }}}
-" -------- Clever Tab:  Uses UltiSnips+Keyword+Omni completion chain   {{{
-  " inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
-  "                       \<c-r>=CleverTab#Complete('tab')<cr>
-  "                       \<c-r>=CleverTab#Complete('ultisnips')<cr>
-  "                       \<c-r>=CleverTab#Complete('keyword')<cr>
-  "                       \<c-r>=CleverTab#Complete('neocomplete')<cr>
-  "                       \<c-r>=CleverTab#Complete('omni')<cr>
-  "                       \<c-r>=CleverTab#Complete('stop')<cr>
-  " inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
 
-    inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
-                        \<c-r>=CleverTab#Complete('tab')<cr>
-                        \<c-r>=CleverTab#Complete('keyword')<cr>
-                        \<c-r>=CleverTab#Complete('neocomplete')<cr>
-                        \<c-r>=CleverTab#Complete('omni')<cr>
-                        \<c-r>=CleverTab#Complete('stop')<cr>
-    inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
-
-  "                     \<c-r>=CleverTab#Complete('ultisnips')<cr>
-" }}}
 " -------- On demand highlight   {{{
 " }}}
 " }}}
