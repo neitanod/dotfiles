@@ -378,9 +378,7 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 " cc still substitutes the line like S would
 nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
 
-" Change word and repeat for next or previous with .
-nnoremap <leader>c *``cgn
-nnoremap <leader>C #``cgN
+nnoremap <leader>cf :silent !vendor/bin/php-cs-fixer fix %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Abbrevs
@@ -807,7 +805,7 @@ Plug 'https://github.com/Shougo/vimproc.vim'
 Plug 'https://github.com/itchyny/vim-qfedit'
 "Plug 'https://github.com/jceb/vim-editqf'
 Plug 'https://github.com/vim-scripts/diffchar.vim'
-Plug 'https://github.com/gcmt/taboo.vim'
+"Plug 'https://github.com/gcmt/taboo.vim'
 Plug 'https://github.com/szw/vim-ctrlspace'
 "Plug 'https://github.com/tomaszj/lexplore.vim'
 " Plug 'https://github.com/atweiden/vim-dragvisuals'
@@ -853,6 +851,7 @@ Plug 'https://github.com/AndrewRadev/switch.vim'
     Plug 'csch0/vim-startify-renderer-nerdfont'
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 catch
 
 endtry
@@ -948,6 +947,9 @@ command! Gofmt :call Gofmt()
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+
+" Coc --> Leader D -> Go to symbol definition
+nnoremap <silent> <leader>d  :exe 'CocList -I --normal --input='.expand('<cword>').' symbols'<CR>
 
 " Symfony go to action and go to view
 nnoremap <expr> <leader>a match(expand('%:t'),'\.class') == -1 ? ':Saction<CR>' : ':Sview<CR>'
