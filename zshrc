@@ -85,6 +85,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 .  ~/apps/extraterm-0.36.2-linux-x64/extraterm-commands-0.36.2/setup_extraterm_zsh.zsh 2>/dev/null
 
 alias publish="curl -F file=@- https://publish.ip1.cc"
+alias publishcolor="publish | template https://ansi.ip1.cc/\#\{@\}"
 
 # disable stderr in red color for now (didn't like it)
 # LIBSTDERRED=~/apps/stderred/build/libstderred.so

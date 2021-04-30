@@ -1,0 +1,1 @@
+echo https://ansi.ip1.cc/\#`bat $1 --paging never --color always | curl -s -F file=@- https://publish.ip1.cc`
