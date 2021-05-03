@@ -49,8 +49,10 @@ set synmaxcol=800
 
 set complete+=k
 set dictionary-=~/.vim/dictionaries/user.txt
-set dictionary+=~/.vim/dictionaries/user.txt
 au FileType * execute 'setlocal dict+=~/.vim/dictionaries/'.&filetype.'.txt'
+
+set completeopt=longest,menuone
+
 
 "silent! colorscheme desert
 "silent! colorscheme vividchalk
@@ -809,7 +811,7 @@ Plug 'https://github.com/vim-scripts/diffchar.vim'
 Plug 'https://github.com/szw/vim-ctrlspace'
 "Plug 'https://github.com/tomaszj/lexplore.vim'
 " Plug 'https://github.com/atweiden/vim-dragvisuals'
-Plug 'https://github.com/AndrewRadev/switch.vim'
+" Plug 'https://github.com/AndrewRadev/switch.vim'
 " Plug 'https://github.com/ktonga/vim-follow-my-lead'
 " Plug 'https://github.com/sergei-dyshel/vim-abbrev-matcher'
 " Plug 'https://github.com/evidens/vim-twig'
@@ -852,6 +854,8 @@ Plug 'https://github.com/AndrewRadev/switch.vim'
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+    Plug 'tjdevries/coc-zsh'
+
 catch
 
 endtry
@@ -1384,15 +1388,35 @@ augroup END
 
 " Open controllers, models, migrations, etc, by name via CtrlP: {{{
 
+" Using CtrlP:
 " -                                                    Mnemonics:
-nmap <leader>oc :CtrlP<CR>app/Http/Controllers/|     " Open Controller
-nmap <leader>om :CtrlP<CR>app/Model/|                " Open Model
-nmap <leader>od :CtrlP<CR>database/migrations/|      " Open Database
-nmap <leader>or :CtrlP<CR>routes/|                   " Open Route
-nmap <leader>ov :CtrlP<CR>resources/views/|          " Open View (view file from Laravel)
-nmap <leader>oh :CtrlP<CR>app/Helpers/|              " Open Helper
-nmap <leader>ofv :CtrlP<CR>frontend/src/views/|      " Open Fronted Views (Vue's view file)
-nmap <leader>ofc :CtrlP<CR>frontend/src/components/| " Open Fronted Component
+" nmap <leader>oc :CtrlP<CR>app/Http/Controllers/|     " Open Controller
+" nmap <leader>om :CtrlP<CR>app/Model/|                " Open Model
+" nmap <leader>od :CtrlP<CR>database/migrations/|      " Open Database
+" nmap <leader>or :CtrlP<CR>routes/|                   " Open Route
+" nmap <leader>ov :CtrlP<CR>resources/views/|          " Open View (view file from Laravel)
+" nmap <leader>oh :CtrlP<CR>app/Helpers/|              " Open Helper
+" nmap <leader>ofv :CtrlP<CR>frontend/src/views/|      " Open Fronted Views (Vue's view file)
+" nmap <leader>ofc :CtrlP<CR>frontend/src/components/| " Open Fronted Component
+
+" Using FZF:
+" Mnemonics:
+" Open Controller
+nmap <leader>oc ::Files app/Http/Controllers/
+" Open Model
+nmap <leader>om :Files app/Model/<CR>
+" Open Database
+nmap <leader>od :Files database/migrations/<CR>
+" Open Route
+nmap <leader>or :Files routes/<CR>
+" Open View (view file from Laravel)
+nmap <leader>ov :Files resources/views/<CR>
+" Open Helper
+nmap <leader>oh :Files app/Helpers/<CR>
+" Open Fronted Views (Vue's view file)
+nmap <leader>ofv :Files frontend/src/views/<CR>
+" Open Fronted Component
+nmap <leader>ofc :Files frontend/src/components/<CR>
 "
 " }}}
 
@@ -1591,7 +1615,9 @@ endfunction
 
 " }}}
 
-" -------- On demand highlight   {{{
+" -------- Vim-Rooter {{{
+let g:rooter_manual_only = 1
+let g:rooter_change_directory_for_non_project_files = 'home'
 " }}}
 " }}}
 " --- Continue with the commands of this file, but after loading plugins --- {{{
