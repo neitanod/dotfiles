@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/oh-my-zsh
 
@@ -101,3 +108,8 @@ if [ -f '/home/sebas/apps/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sebas/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/sebas/apps/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sebas/apps/google-cloud-sdk/completion.zsh.inc'; fi
+
+source ~/dotfiles/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
