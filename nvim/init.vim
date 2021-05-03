@@ -856,6 +856,7 @@ Plug 'https://github.com/szw/vim-ctrlspace'
     " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
     Plug 'tjdevries/coc-zsh'
 
+    Plug 'christoomey/vim-tmux-navigator'
 catch
 
 endtry
