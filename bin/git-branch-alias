@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ -z "$1" ]]
+  then
+    echo "Argument needed:  New alias for current branch."
+  else
+    git symbolic-ref refs/heads/$1 refs/heads/`git rev-parse --abbrev-ref HEAD`
+fi
