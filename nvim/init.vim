@@ -1538,6 +1538,46 @@ if has("autocmd")
     autocmd BufWritePost * checktime
 endif
 
+if has("autocmd")
+    augroup myphpcodestyle
+        au!
+        au BufWritePost *.php call PHPCSFixer(expand("%:p"))
+    augroup END
+endif
+
+function! PHPCSFixer(file)
+    " normal "m'"
+    " let view = winsaveview()
+    "let l:cursor_pos = getpos(".")
+    let l:view = winsaveview()
+    " mkview
+    " let l = line(".")
+    " let c = col(".")
+
+    call PHPCSFixer_(a:file)
+
+    " exec setpos('.', l:cursor_pos)
+    call winrestview(l:view)
+    " normal "`'"
+    " echom "Line: " . l . " / Col:" . c
+    " call cursor(l, c)
+    " silent loadview
+    " call winrestview(l:view)
+endfunction
+
+
+
+function! PHPCSFixer_(file)
+    if ("" == a:file)
+        let a:file = expand("%:p")
+    endif
+    if filereadable("./utils/php-cs-fixer")
+        " echom "Fixing silent !./utils/php-cs-fixer fix " . a:file
+        exec "silent !./utils/php-cs-fixer fix " . a:file
+        exec ":e"
+    endif
+endfunction
+
 
 " }}}
 " -------- CtrlP   {{{
