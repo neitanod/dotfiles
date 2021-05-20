@@ -40,7 +40,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git k zsh-nvm)
+plugins=(git k) # (git k zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,6 +102,8 @@ alias publishcolor="publish | template https://ansi.ip1.cc/\#\{@\}"
 
 # OPAM configuration
 . /home/sebas/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+if [ -f  $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/sebas/apps/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sebas/apps/google-cloud-sdk/path.zsh.inc'; fi

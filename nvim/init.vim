@@ -1565,8 +1565,6 @@ function! PHPCSFixer(file)
     " call winrestview(l:view)
 endfunction
 
-
-
 function! PHPCSFixer_(file)
     if ("" == a:file)
         let a:file = expand("%:p")
