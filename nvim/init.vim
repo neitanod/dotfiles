@@ -141,6 +141,7 @@ set colorcolumn=+1
 set formatoptions=qrnlj
 
 set cursorcolumn  " Vertical color on cursor column
+set cursorline    " Horizontal color on cursor column
 
 
 if version >= 703
@@ -1380,7 +1381,7 @@ augroup END
 
 
 " --- Startify         {{{
-    let g:startify_files_number = 15
+    let g:startify_files_number = 35
 " }}}
 
 

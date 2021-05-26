@@ -132,7 +132,7 @@ else
 
 class goDirAlias
 {
-	public function go($alias = NULL)
+	public static function go($alias = NULL)
 	{
 		$a = goDirAlias::get_alias_array();
 		if(isset($a[$alias]))
@@ -153,7 +153,7 @@ class goDirAlias
 			echo "Alias \"$alias\" not found\n";
 		}
 	}
-	public function clear()
+	public static function clear()
 	{
 			file_put_contents(self::home_dir().".gotopath.bat","");
 			chmod(self::home_dir().".gotopath.bat",0700);
@@ -161,11 +161,11 @@ class goDirAlias
 			chmod(self::home_dir().".gotopath",0700);
 	}
 	
-	public function alias_file(){
+	public static function alias_file(){
 		return goDirAlias::home_dir().".gotab";
 	}
 	
-	public function add($alias, $dir = NULL)
+	public static function add($alias, $dir = NULL)
 	{
 		$a = goDirAlias::get_alias_array();
 		if(isset($a[$alias]))
@@ -181,7 +181,7 @@ class goDirAlias
 		echo($o);
 	}
 	
-	public function remove($alias)
+	public static function remove($alias)
 	{
 		$a = goDirAlias::get_alias_array();
 		if(isset($a[$alias])) 
@@ -196,7 +196,7 @@ class goDirAlias
 		}
 	}
 	
-	public function alias_list_plain()
+	public static function alias_list_plain()
 	{
 		$a = goDirAlias::get_alias_array();
 		foreach($a as $k => $v)
@@ -206,7 +206,7 @@ class goDirAlias
 		
 	}
 	
-	public function alias_list()
+	public static function alias_list()
 	{
 		echo("Aliases listing:\n");
 		$a = goDirAlias::get_alias_array();
@@ -217,7 +217,7 @@ class goDirAlias
 		
 	}
 	
-	private function get_alias_array()
+	private static function get_alias_array()
 	{
 		try
 		{
@@ -238,7 +238,7 @@ class goDirAlias
 		}
 	}
 	
-	private function whoami()
+	private static function whoami()
 	{
 		// Try to find out the username of the user running the script
 		if(function_exists('posix_getpwuid'))
@@ -261,7 +261,7 @@ class goDirAlias
 	}
 	
 	
-	private function home_dir()
+	private static function home_dir()
 	{
 		// Try to find out the home directory of the user running the script
 		if(function_exists("posix_getpwnam"))

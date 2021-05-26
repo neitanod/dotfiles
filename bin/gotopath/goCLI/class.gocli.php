@@ -2,7 +2,7 @@
 
 /**
  * goCLI v1.0 -  Easily receive parameters in command line mode.
- * Copyright (C) 2009  Sebasti·n Grignoli <grignoli@gmail.com>
+ * Copyright (C) 2009  Sebasti√°n Grignoli <grignoli@gmail.com>
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -188,7 +188,7 @@ class goCLI
 
 		for($i = 0;$i < $last_short; $i++)
 		{
-			$param_name = $this->findParamByShort($param{$i});
+			$param_name = $this->findParamByShort($param[$i]);
 			if(!($param_name === false)){
 				if(strpos(substr($param, $i+1), $this->key_val_separator) === 0) 
 				{
@@ -199,7 +199,7 @@ class goCLI
 				$this->registerValue($param_name, $param_val);
 				unset($param_val);
 			} else {
-				$this->errors[] = $this->params_array['_script_name'] . " invalid option: ". $this->short_escape . $this->str_ibefore($param{$i}, $this->key_val_separator);
+				$this->errors[] = $this->params_array['_script_name'] . " invalid option: ". $this->short_escape . $this->str_ibefore($param[$i], $this->key_val_separator);
 			}
 		}		
 	}
