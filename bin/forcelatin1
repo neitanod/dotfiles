@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+
+require_once("Encoding.php");  // Specify correct path to library here.
+
+if(empty($argv[1])) {
+    while($f = fgets(STDIN)){
+        echo ForceUTF8\Encoding::toLatin1($f);
+    }
+} else {
+    if(!file_exists($argv[1])){
+        if ($argv[1] != "--help") {
+            fwrite(STDERR, "File not found.  Use --help for help.\n");
+            exit(1);
+        }
+        echo("Specifiy the file to convert or pipe some text.\n\n");
+        echo("Example 1:\n    ls | latin1\n\n");
+        echo("Example 2:\n    latin1 input_file.txt  # will output converted text\n\n");
+        echo("Example 3:\n    latin1 input_file.txt replace  #will replace file contents\n\n");
+        die();
+    } else if(!is_file($argv[1])) {
+        echo($argv[1]." is a directory.\n");
+        die();
+    } else {
+        $filename = $argv[1];
+        echo($filename."\n");
+        $file = fopen($filename, "r");
+        $output = null;
+        if(!empty($argv[2]) && $argv[2] == "replace") {
+            $output_filename = $argv[1].".latin1";
+            $output = fopen($output_filename, "w");
+        }
+
+        while($f = fgets($file)){
+            if(!is_null($output)) {
+                fputs($output, ForceUTF8\Encoding::toLatin1($f));
+            } else {
+                echo ForceUTF8\Encoding::toLatin1($f);
+            }
+        }
+        fclose($file);
+        if(!is_null($output)) fclose($output);
+        if(!empty($output_filename)) {
+            unlink($filename);
+            rename($output_filename, $filename);
+        }
+    }
+}
