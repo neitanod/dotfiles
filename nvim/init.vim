@@ -26,6 +26,8 @@ set notimeout
 set ttimeout
 set ttimeoutlen=10
 
+" guicursor in Neovim causes some q characters appear randomly in non-X11
+" terminals, even after exiting Neovim.
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
 :autocmd OptionSet guicursor noautocmd set guicursor=

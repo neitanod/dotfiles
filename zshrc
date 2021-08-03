@@ -40,7 +40,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git k) # (git k zsh-nvm)
+plugins=(git k artisan) # (git k zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,7 +85,8 @@ fi
 #
 
 # Nodejs
-VERSION=v10.16.0
+#VERSION=v10.16.0
+VERSION=v14.17.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 
