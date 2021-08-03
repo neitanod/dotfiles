@@ -1,0 +1,81 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage:
+
+  delete-old -p /var/backup/myservice -k 5 -f
+    Simulate deletion of old files (-f) keeping the newest 5 (-k 5) in path /var/backup/myservice (-p /var/backup/myservice)
+
+  delete-old -p . -k 3 -d
+    Simulate deletion of old directories (-d) keeping the newest 3 (-k 3, default) in curren path (-p .)
+
+  delete-old -p . -k 3 -x
+    ACTUALLY eXecute (-x) deletion of old files and directories keeping the newest 3 (-k 3, default) in curren path (-p .)"
+    exit 0   # Exits without an error
+}
+
+if [[ -z "$1" ]]   # -z returns true on empty string
+then
+    usage
+fi
+
+# Max Items to keep (by default)
+KEEP=3
+# TYPE="-type f"
+# TYPENAME="regular file "
+KILLER="rm -rf"
+DRY_RUN="yes"
+
+while getopts "k:p:dfhx" flag
+do
+    case "${flag}" in
+        k) KEEP=${OPTARG};;
+        d) TYPE="-type d" ; TYPENAME="directory "; KILLER="rm -rf";;
+        f) TYPE="-type f" ; TYPENAME="regular file " ; KILLER="rm -f";;
+        p) DIR=${OPTARG};;
+        x) DRY_RUN="no";;
+        h) usage;;
+    esac
+done
+
+if [[
+    "$DRY_RUN" == "yes"
+]]
+then
+    echo "DRY RUN.  Not actually deleting anything.  Add -x to execute."
+    KILLER="false && echo ${KILLER}"
+fi
+
+if [[
+    "$DIR" == ""
+    ]]       # Does $1 equal to nothing ?
+then
+    DIR=`pwd`
+fi
+
+if [[
+    "$DIR" == "/"
+    ]]       # Does $1 equal to / ?
+then
+    echo "Running on root folder is not allowed."
+    echo "USE THIS UTILITY WITH CARE.  It will DESTROY FILES!"
+    exit 1000   # Exits with an error
+fi
+
+# echo "PATH: " ${DIR}
+
+COMMAND="find $DIR -maxdepth 1 ! -path $DIR $TYPE"
+TOTAL=`$COMMAND | wc -l`
+
+# echo Keeping $KEEP
+
+for i in `$COMMAND | awk -F "/" '{print $NF}' | sort -n`; do
+    if [ "$TOTAL" -gt "$KEEP" ]; then
+        printf "\u26A0 REMOVING $TYPENAME$DIR/$i \n"
+        $KILLER $DIR/$i
+    else
+        printf "\u2764 KEEPING $TYPENAME$DIR/$i \n"
+    fi
+
+    (( TOTAL-- ));
+done
