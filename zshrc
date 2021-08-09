@@ -95,7 +95,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 alias publish="curl -F file=@- https://publish.ip1.cc"
 alias publishcolor="publish | template https://ansi.ip1.cc/\#\{@\}"
 
-alias cat='bat --paging=never'
+command -v bat &> /dev/null && alias cat='bat --paging=never'
 
 # disable stderr in red color for now (didn't like it)
 # LIBSTDERRED=~/apps/stderred/build/libstderred.so
