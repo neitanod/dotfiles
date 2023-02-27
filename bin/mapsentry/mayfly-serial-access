@@ -1,0 +1,1 @@
+gcloud compute --project=mayfly-1188 connect-to-serial-port mayfly --zone=us-central1-b
