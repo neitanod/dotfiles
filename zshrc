@@ -97,6 +97,9 @@ alias publishcolor="publish | template https://ansi.ip1.cc/\#\{@\}"
 
 command -v bat &> /dev/null && alias cat='bat --paging=never'
 
+# cd.. for old Windows and DOS compatibility
+alias cd..="cd .."
+
 # disable stderr in red color for now (didn't like it)
 # LIBSTDERRED=~/apps/stderred/build/libstderred.so
 # if [ -f $LIBSTDERRED ]; then
