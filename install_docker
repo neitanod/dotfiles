@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Docker Desktop ############
+sudo apt-get -y install gnome-terminal
+sudo apt-get -y remove docker-desktop # Uninstall old version
+
+DOCKER_DESKTOP_INSTALLER="docker-desktop-4.17.0-amd64.deb"
+cd ~
+if -f ${DOCKER_DESKTOP_INSTALLER}
+then
+  echo Docker Desktop installed found
+else
+  wget https://desktop.docker.com/linux/main/amd64/${DOCKER_DESKTOP_INSTALLER}
+fi
+sudo apt-get install ./${DOCKER_DESKTOP_INSTALLER}
+
+sudo mkdir -m 0755 -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+#############################

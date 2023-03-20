@@ -1,0 +1,2 @@
+sudo docker start bsdevel-10.3 || \
+sudo docker run --name bsdevel-10.3 -v e2e-db:/var/lib/mysql -p 3406:3306 -d mariadb:10.3
