@@ -11,7 +11,7 @@ sudo apt-get -y install php-mbstring php-zip php-xml php-mysql php-gd php-imagic
 sudo apt-get -y install php-mongodb php-cli php-redis php-bz2
 sudo apt-get -y install apache2 phpmyadmin
 sudo apt-get -y install mariadb-server mariadb-client mariadb-common
-sudo apt-get -y install git curl tomboy-ng gimp ripgrep openvpn guake yarn composer git-cola tig ranger
+sudo apt-get -y install git curl tomboy-ng gimp ripgrep openvpn guake yarn composer git-cola tig ranger dmenu rofi fzf
 
 # Install NerdFonts patched fonts, including favorite CodeNewRoman
 mkdir -p ${HOME}/fonts/NerdFonts
