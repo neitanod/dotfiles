@@ -1,5 +1,19 @@
 " Source this buffer like this:    gg VGy    <Esc> :@"
 
+
+"
+"  PHP intellisense functionality provided by COC and COC-Intellephense
+"     :CocInstall @yaegassy/coc-intelephense
+"     https://github.com/yaegassy/coc-intelephense
+"
+
+"
+"  Folder browsing functionality provided by FERN with <LEADER>-f ( <SPACE>-f )
+"
+
+"set clipboard
+
+" Set X Window clipboard as the default register
 set clipboard+=unnamedplus
 
 let g:python3_host_prog='/usr/bin/python'
@@ -436,8 +450,9 @@ inoremap <l <li></li><Left><Left><Left><Left><Left>
 map <C-w><C-t> <Esc>:tabnew<enter>
 
 " Split vertically and explore
-nnoremap <C-w><C-e> <C-w>v:Ex<enter>
-
+nnoremap <C-w><C-e> <C-w>v:Startify<enter>
+nnoremap <silent> <leader>n :Startify<enter>
+nnoremap <C-w><C-n> <C-w>v:Startify<enter>
 
 inoremap <F5> <Esc>:bp<Enter>
 nnoremap <F5> :bp<Enter>
@@ -637,9 +652,6 @@ endfunction
 
 nnoremap <leader><F12> :call <SID>disableCursorShape()<CR>
 
-" Set X Window clipboard as the default register
-set clipboard=unnamedplus
-
 let g:ctrlp_working_path_mode = "rc"
 let g:ctrlp_root_markers = ["symfony",".git"]
 let g:ctrlp_use_cache = 1
@@ -732,8 +744,12 @@ command! -bar -nargs=0 Tig    :silent exe "! tig" |redraw!
 " --- Load plugins --------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 try
-Plug 'kovetskiy/sxhkd-vim'
-Plug 'editorconfig/editorconfig-vim'
+"Plug 'yegappan/mru'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'github/copilot.vim'
+"Plug 'kovetskiy/sxhkd-vim'
+"Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -765,7 +781,7 @@ Plug 'https://github.com/neitanod/vim-sade'
 "Plug 'https://github.com/nathanaelkane/vim-indent-guides'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/luochen1990/rainbow'
-Plug 'https://github.com/neitanod/vim-clevertab'
+"Plug 'https://github.com/neitanod/vim-clevertab'
 "Plug 'https://github.com/SirVer/ultisnips'
 Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/tpope/vim-repeat'
@@ -938,7 +954,6 @@ cnoremap <c-e> <end>
 nnoremap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <silent> <leader>T :tabedit ~/TIL.txt<CR>
 "nnoremap <silent> <leader>S :tabedit ~/dotfiles/vim/UltiSnips/php.snippets<CR>
-nnoremap <silent> <leader>n :tabedit ~/Dropbox/Public/notas/notas.md<CR>
 nnoremap <silent> <leader>p :tabedit ~/.pentadactylrc<CR>
 " nnoremap <silent> <backspace> :Switch<CR>
 source $HOME/.vim/switch-definitions.vim
@@ -1636,8 +1651,8 @@ let g:gtfo#terminals = { 'mac' : 'iterm', 'unix' : 'konsole' }
 
 " -------- Conditional TAB key to use alongside CoC {{{
 
-inoremap <silent><tab> <c-r>=ConditionalTab()<cr>
-inoremap <silent><s-tab> <c-r>=ConditionalShiftTab()<cr>
+" inoremap <silent><tab> <c-r>=ConditionalTab()<cr>
+" inoremap <silent><s-tab> <c-r>=ConditionalShiftTab()<cr>
 
 function! ConditionalTab()
   if pumvisible() == 0
@@ -1715,6 +1730,43 @@ set secure
 
 let g:CommandTPreferredImplementation='lua'
 
-inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+
+" CleverTab replaced by COC autocomplete below.
+"
+" inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+"                       \<c-r>=CleverTab#Complete('tab')<cr>
+"                       \<c-r>=CleverTab#Complete('keyword')<cr>
+"                       \<c-r>=CleverTab#Complete('stop')<cr>
+" inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+
+
+
+
+
+" ============= COC autocomplete navigation with TAB
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+set exrc
+set secure
 

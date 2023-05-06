@@ -1,0 +1,6 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+SELECTED=`cat menu.rofimenu | sed 's/ *#!#.*//' | rofi -dmenu`
+COMMAND=`grep "$SELECTED" menu.rofimenu | sed 's/.*#!#//'`
+notify-send "$COMMAND"
+`$COMMAND`

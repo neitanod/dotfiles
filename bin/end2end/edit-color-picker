@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $HOME/doc/prj/end2end/gamehub-admin/public/js/simple-color-picker
+vim -O simple-color-picker.js simple-color-picker.html

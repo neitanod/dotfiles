@@ -1,1 +1,1 @@
-redshift -O 3500K
+redshift -P -O 3500K
