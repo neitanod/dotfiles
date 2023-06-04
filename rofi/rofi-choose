@@ -1,0 +1,69 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]
+  then
+    echo "Please provide menu file path."
+    echo
+    echo "rofi-choose menufile.menu"
+    echo
+    echo "  Each line of the menu file should have the following format:"
+    echo
+    echo "#!# Optional menu title"
+    echo "#L# 10"
+    echo "ls                                #:# List files"
+    echo "google-chrome http://mypage.com   #:# Open my page"
+    echo
+    exit 1
+fi
+
+title=`cat $1 | sed -n -e 's/#!#[[:space:]]*//p'`
+options=`cat $1 | sed -n -e 's/.*#:#[[:space:]]*//p'`
+lines=`cat $1 | sed -n -e 's/w*#L#[[:space:]]*//p'`
+
+echo $lines
+
+if [[ -z "$title" ]]
+  then
+    title="Menu"
+fi
+
+if [[ -z "$options" ]]
+  then
+    options="No options found in file $1"
+fi
+
+if [[ -z "$lines" ]]
+  then
+    lines="10"
+fi
+
+
+#echo "echo \"\$options\" | rofi -i -lines $lines -dmenu -p \"$title\")"
+
+
+if which rofi
+  then
+    chosen="$(echo "$options" | rofi -i -l $lines -dmenu -p "$title")"
+  else
+    if which dmenu
+      then
+        chosen="$(echo "$options" | dmenu -l $lines)"
+      else
+        notify-send "Nor rofi nor dmenu were found."
+        echo "Nor rofi nor dmenu were found."
+        exit 1
+    fi
+fi
+
+
+if [[ -z $? ]]
+  then
+    echo "No hubo error"
+fi
+
+if [[ -z "$chosen" ]]
+  then
+      exit 0
+fi
+
+`cat $1 | sed -n -e "s/#:#[[:space:]]*$chosen$//p"`

@@ -1,1 +1,2 @@
-ssh -t cricket 'cd /var/www/alpha.sku.io; sudo zsh'
+echo "Connecting to Cricket (dev, alpha, why)"
+ssh -t cricket 'cd /var/www/alpha.sku.io; sudo -u sku zsh'

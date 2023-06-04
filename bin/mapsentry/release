@@ -1,0 +1,13 @@
+#!/bin/bash
+CURRENT_RELEASE="release-2022-12-01"
+git co $1
+git pull
+
+#  ( ( cat file.php | grep -E '<<<<<<<|=======|>>>>>>>' ) && echo ">> >> >> >> >> Unresolved merges! << << << << <<" ) && exit 100  # Example with grep -E
+( ( git log | grep -E '56cf43050705fb90ee45a45daefabea792ff00f5' ) && echo && echo ">> >> >> >> >> ERROR: This branch forks from a BAD MASTER! << << << << <<" && echo ) && git co $CURRENT_RELEASE && exit 100
+git co $CURRENT_RELEASE
+git pull
+git merge $1
+git st
+
+

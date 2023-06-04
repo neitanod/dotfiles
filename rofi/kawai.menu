@@ -1,0 +1,5 @@
+echo "¯\_(ツ)_/¯" | xclip        #:#  ¯\_(ツ)_/¯
+echo "( ͡° ͜ʖ ͡°)" | xclip          #:#  ( ͡° ͜ʖ ͡°)
+echo "ಠ_ಠ"  | xclip              #:#   ಠ_ಠ
+echo "◕‿◕"  | xclip              #:#  ◕‿◕
+echo "(╯°□°）╯︵ ┻━┻" | xclip -sel clip    #:#  (╯°□°）╯︵ ┻━┻

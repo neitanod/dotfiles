@@ -1,0 +1,1 @@
+xpra start ssh://sku-master-1/ --start="xterm"

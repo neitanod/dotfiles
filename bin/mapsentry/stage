@@ -1,0 +1,7 @@
+#!/bin/bash
+git co SKU-$1
+git pull
+git co staging
+git pull
+git merge SKU-$1
+git st
