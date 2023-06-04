@@ -9,5 +9,3 @@ git co $CURRENT_RELEASE
 git pull
 git merge $1
 git st
-
-

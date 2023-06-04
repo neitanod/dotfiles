@@ -32,7 +32,8 @@ git clone https://github.com/robbyrussell/oh-my-zsh ~/dotfiles/oh-my-zsh
 rm -rf ~/dotfiles/oh-my-zsh/custom
 ln -s ~/dotfiles/oh-my-custom/custom ~/dotfiles/oh-my-zsh
 ln -s ~/dotfiles/nvim ~/.config/
-git clone https://github.com/supercrabtree/k            ~/.oh-my-zsh/custom/plugins/k
-git clone https://github.com/jessarcher/zsh-artisan.git ~/.oh-my-zsh/custom/plugins/artisan
+git clone https://github.com/supercrabtree/k            ~/dotfiles/oh-my-custom/custom/plugins/k
+git clone https://github.com/lukechilds/zsh-nvm         ~/dotfiles/oh-my-custom/custom/plugins/zsh-nvm
+git clone https://github.com/jessarcher/zsh-artisan.git ~/dotfiles/oh-my-custom/custom/plugins/artisan
 
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

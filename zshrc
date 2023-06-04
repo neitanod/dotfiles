@@ -40,7 +40,12 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git k artisan) # (git k zsh-nvm)
+# plugins=(git k artisan asdf zsh-nvm)
+plugins=(git)
+plugins+=(k)
+plugins+=(asdf)
+plugins+=(artisan)
+plugins+=(zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -48,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 export GOROOT=$HOME/doc/prj/go/bin/go-1.15.6/
 export GOPATH=/home/sebas/doc/prj/go/
 
-export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/bin/mapsentry:/home/sebas/bin/guybrush:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
+export PATH=$PATH:${GOROOT}bin:/home/sebas/bin:/home/sebas/bin/mapsentry:/home/sebas/bin/end2end:/home/sebas/bin/guybrush:/home/sebas/vimconfig/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/sebas/bin
 
 #export MAIL_DRIVER=log
 
@@ -97,6 +102,9 @@ alias publishcolor="publish | template https://ansi.ip1.cc/\#\{@\}"
 
 command -v bat &> /dev/null && alias cat='bat --paging=never'
 
+# cd.. for old Windows and DOS compatibility
+alias cd..="cd .."
+
 # disable stderr in red color for now (didn't like it)
 # LIBSTDERRED=~/apps/stderred/build/libstderred.so
 # if [ -f $LIBSTDERRED ]; then
@@ -118,3 +126,5 @@ source ~/dotfiles/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source $HOME/app/php-version/php-version.sh
