@@ -1,0 +1,2 @@
+#!/bin/bash
+( ( git log | grep -E '56cf43050705fb90ee45a45daefabea792ff00f5' ) && echo && echo ">> >> >> >> >> This branch forks from a BAD MASTER! << << << << <<" && echo )

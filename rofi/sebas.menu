@@ -1,0 +1,17 @@
+#!# Rofi-choose
+#L# 13
+google-chrome https://docs.google.com/spreadsheets/d/1STpxYe3AkQYh7OEpjBJG9bbaIek8HOPAFuQ95OsiFHA/edit --no-sandbox    #:# LIFE PLANNING BOARD
+zsh -c recent                                                        # :# Checkout recent branch ("recent")
+konsole --workdir ~/doc/prj/map/sku.io                               #:# Konsole at SKU Folder
+konsole --workdir ~/doc/prj/map/sku.io -e vim                        #:# Vim at SKU Folder
+konsole --workdir ~/doc/prj/map/go.mapsentry.com                     #:# Konsole at MAPSentry Folder
+konsole --workdir ~/doc/prj/map/go.mapsentry.com -e vim              #:# Vim at MAPSentry Folder
+konsole                                                              #:# Konsole at ~
+google-chrome https://chat.openai.com/                               #:# GPT3
+rofi -combi-modi ssh -show combi                                     #:# SSH
+konsole -e vim                                                       #:# Vim
+/home/sebas/.local/bin/rofimoji                                      #:# Emojis
+/home/sebas/dotfiles/rofi/rofi-choose /home/sebas/dotfiles/rofi/kawai.menu               #:# Kawaii
+#:# ----------------------------------------------------------------
+konsole -e vim /home/sebas/dotfiles/rofi/rofi-choose                 #:# Edit rofi-choose
+konsole -e vim /home/sebas/dotfiles/rofi/sebas.menu                  #:# Edit this menu

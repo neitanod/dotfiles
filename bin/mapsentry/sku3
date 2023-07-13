@@ -1,1 +1,2 @@
+echo "Connecting to SKU3 (staging, beta, sku3)"
 ssh -t sku3 'cd /var/www; sudo zsh'

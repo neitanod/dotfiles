@@ -2,30 +2,30 @@
 
 /**
  * go  - Jump to a directory, anywhere in the disc
- * @author 
+ * @author Sebastián Grignoli <grignoli@gmail.com>
  * @copyright 2009
  */
-  
-  
+
+
 /**
  * Linux:  add to .bashrc
  *
- 
+
  function go()
  {
   /bin/go $*
   RESULT=`cat $HOME/.gotopath`
   $RESULT
  }
- 
- */  
-  
+
+ */
+
 require_once( dirname(__FILE__).'/goCLI/class.gocli.php');
 
 $expected_params = array(
 
 	'help' =>
-		array(	
+		array(
 			'short'		=> 'h',
 			'long'		=> 'help',
 			'info'		=> 'Show this help page.',
@@ -42,7 +42,7 @@ $expected_params = array(
 			'info'		=> 'List exiting aliases',
 			'switch'	=> TRUE,
 		),
-				
+
 	'plain' =>
 		array(
 			'short'		=> 'p',
@@ -50,25 +50,25 @@ $expected_params = array(
 			'info'		=> 'List exiting aliases in a clean list (good for use on autocomplete)',
 			'switch'	=> TRUE,
 		),
-				
+
 	'add' =>
-		array(	
+		array(
 			'short'		=> 'a',
 			'long'		=> 'add',
 			'info'		=> 'Add an alias to specified or current directory',
 			'switch'	=> TRUE,
 		),
-		
+
 	'remove' =>
-		array(	
+		array(
 			'short'		=> 'r',
 			'long'		=> 'remove',
 			'info'		=> 'Remove an alias by name',
 			'switch'	=> TRUE,
 		),
-		
+
 	'alias' =>
-		array(	
+		array(
 			'short'		=> '',
 			'long'		=> '',
 			'info'		=> 'Alias (when calling the program without any argument it tries to jump to the alias named "default")',
@@ -81,7 +81,7 @@ $expected_params = array(
 
 );
 
-$cCLI = new goCLI($expected_params); 
+$cCLI = new goCLI($expected_params);
 $param = $cCLI->go();
 
 goDirAlias::clear();
@@ -95,29 +95,29 @@ elseif($param['list']) return goDirAlias::alias_list();
 
 elseif($param['plain']) return goDirAlias::alias_list_plain();
 
-elseif($param['add']) 
+elseif($param['add'])
 {
-	if($param['alias']) 
+	if($param['alias'])
 	{
 		return goDirAlias::add($param['alias'],(empty($param['directory'])?"":$param['directory']));
-	} 
+	}
 	else
 	{
 		echo "Please specify the alias name.\n";
 	}
 }
 
-elseif($param['remove']) 
+elseif($param['remove'])
 {
-	if($param['alias']) 
+	if($param['alias'])
 	{
 		return goDirAlias::remove($param['alias']);
-	} 
+	}
 	else
 	{
 		echo "Please specify the alias name.\n";
 	}
-	
+
 }
 
 elseif($param['alias'])
@@ -142,12 +142,12 @@ class goDirAlias
 			//exec("cd \"".$a[$alias]."\"");
 			//echo "Now on ". getcwd();
 			$drive = substr($a[$alias],1,1) == ":"?"@".substr($a[$alias],0,2)."\n":"";
-			
+
 			file_put_contents(goDirAlias::home_dir().".gotopath.bat",$drive."@cd ".$a[$alias]."\n");
 			chmod(goDirAlias::home_dir().".gotopath.bat",0700);
 			file_put_contents(goDirAlias::home_dir().".gotopath","".$a[$alias]);
 			chmod(goDirAlias::home_dir().".gotopath",0700);
-		} 
+		}
 		else
 		{
 			echo "Alias \"$alias\" not found\n";
@@ -160,11 +160,11 @@ class goDirAlias
 			file_put_contents(self::home_dir().".gotopath","");
 			chmod(self::home_dir().".gotopath",0700);
 	}
-	
+
 	public static function alias_file(){
 		return goDirAlias::home_dir().".gotab";
 	}
-	
+
 	public static function add($alias, $dir = NULL)
 	{
 		$a = goDirAlias::get_alias_array();
@@ -180,22 +180,22 @@ class goDirAlias
 		file_put_contents(goDirAlias::alias_file(),serialize($a));
 		echo($o);
 	}
-	
+
 	public static function remove($alias)
 	{
 		$a = goDirAlias::get_alias_array();
-		if(isset($a[$alias])) 
+		if(isset($a[$alias]))
 		{
 			unset($a[$alias]);
 			file_put_contents(goDirAlias::alias_file(),serialize($a));
 			echo("Alias removed\n");
-		} 
-		else 
+		}
+		else
 		{
 			echo("Alias not found\n");
 		}
 	}
-	
+
 	public static function alias_list_plain()
 	{
 		$a = goDirAlias::get_alias_array();
@@ -203,9 +203,9 @@ class goDirAlias
 		{
 			echo($k ."\n");
 		}
-		
+
 	}
-	
+
 	public static function alias_list()
 	{
 		echo("Aliases listing:\n");
@@ -214,9 +214,9 @@ class goDirAlias
 		{
 			echo($k . "\t\t" . $v ."\n");
 		}
-		
+
 	}
-	
+
 	private static function get_alias_array()
 	{
 		try
@@ -237,7 +237,7 @@ class goDirAlias
 			return array();
 		}
 	}
-	
+
 	private static function whoami()
 	{
 		// Try to find out the username of the user running the script
@@ -255,12 +255,12 @@ class goDirAlias
 				$running_user = exec('whoami');
 			}
 		}
-	
+
 	return $running_user;
-	
+
 	}
-	
-	
+
+
 	private static function home_dir()
 	{
 		// Try to find out the home directory of the user running the script
@@ -270,7 +270,7 @@ class goDirAlias
 			$user_info = posix_getpwnam(self::whoami());
 			$home_dir = $user_info['dir']."/";
 			//print_r($user_info);
-		} else 
+		} else
 		{
 			// Looking for Windows environment variables
 			$home_dir = getenv('HOMEDRIVE').getenv('HOMEPATH').'\\';
@@ -280,9 +280,9 @@ class goDirAlias
 				$home_dir = getenv('HOME')."/";
 			}
 		}
-	
+
 	return $home_dir;
-	
+
 	}
 
 }
