@@ -3,6 +3,7 @@ mkdir ~/olddotfiles > /dev/null 2>&1
 mv ~/bin         ~/olddotfiles/bin
 mv ~/.vim        ~/olddotfiles/.vim
 mv ~/.vimrc      ~/olddotfiles/.vimrc
+mv ~/.ideavimrc  ~/olddotfiles/.ideavimrc
 mv ~/.vimundo    ~/olddotfiles/.vimundo
 mv ~/.bashrc     ~/olddotfiles/.bashrc
 mv ~/.zshrc      ~/olddotfiles/.zshrc
@@ -16,6 +17,7 @@ mv ~/.config/nvim  ~/olddotfiles/.config_nvim
 ln -s ~/dotfiles/bin         ~/bin
 ln -s ~/dotfiles/vim         ~/.vim
 ln -s ~/dotfiles/vimrc       ~/.vimrc
+ln -s ~/dotfiles/ideavimrc   ~/.ideavimrc
 #ln -s ~/dotfiles/vim/vimundo ~/.vimundo
 ln -s ~/dotfiles/bashrc      ~/.bashrc
 ln -s ~/dotfiles/zshrc       ~/.zshrc

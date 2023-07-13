@@ -1,0 +1,18 @@
+ QTabBar::tab {
+    font-family: Noto Sans;
+    font-style: SemiCondensed Light;
+    font-weight: 400;
+    font-size: 8pt;
+    height: 14px;
+    min-width: 35px;
+    max-width: 120px;
+    padding: 3;
+    border: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+QTabBar::tab:selected {
+    background: rgb(80, 80, 80);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}

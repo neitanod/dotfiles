@@ -1008,10 +1008,12 @@ vmap af o<esc>kvaf
 
 " mark with 'mm' and later quickly go to that mark
 " with just 'MM' (without having to reach for `)
-nnoremap mm mM
-vnoremap mm mM
-nnoremap MM `M
-vnoremap MM `M
+" nnoremap mm mM
+" vnoremap mm mM
+" nnoremap MM `M
+" vnoremap MM `M
+nnoremap mm `
+vnoremap mm `
 
 " Navigate history with g-/g= instead of g-/g+ (no SHIFT needed)
 nnoremap g= g+

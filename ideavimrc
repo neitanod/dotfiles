@@ -1,0 +1,16 @@
+" jk and kj -> Quit Insert mode (and autosave)
+" inoremap jk <Esc><Esc>`^:w<Cr>
+" inoremap kj <Esc><Esc>`^:w<Cr>
+inoremap jk <Esc><Esc>`^
+inoremap kj <Esc><Esc>`^
+cnoremap jk <C-c>
+cnoremap kj <C-c>
+set ideajoin
+
+" Easier marks:
+"  Set marks with "ma" "mb" etc and jump back to them with "mma" "mmb" etc
+nnoremap mm `
+vnoremap mm `
+
+let mapleader = "\<Space>"
+
