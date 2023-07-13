@@ -1,5 +1,8 @@
+Test 1               #!#  konsole -e /usr/bin/bash --rcfile <(echo "ls;sleep 4;zsh")
+Test 2               #!#  konsole --workdir / -e vim
 🙂 Emojis            #!#  /home/sebas/.local/bin/rofimoji
-List files 1         #!#  konsole -e "zsh -c 'ls'"
-List files 2         #!#  konsole -e "zsh -c 'ls; sleep 3; exec zsh -i'"
+Konsole              #!#  konsole
+Zsh                  #!#  konsole -e zsh
+List files 3         #!#  konsole -e "zsh -c 'ls; sleep 3; exec zsh -i'"
 Vim                  #!#  konsole -e vim
 Edit this menu       #!#  konsole -e vim /home/sebas/dotfiles/rofi-menu/menu.rofimenu
